@@ -4,8 +4,7 @@ using THEVENUE.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers()
-    .AddNewtonsoftJson();
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 builder.Services.AddOpenApi();
 

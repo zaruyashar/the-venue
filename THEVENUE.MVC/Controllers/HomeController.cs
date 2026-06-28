@@ -1,24 +1,34 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using THEVENUE.MVC.Models;
+using THEVENUE.MVC.Services;
 
 namespace THEVENUE.MVC.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    private readonly IVenueService _venueService;
+    private readonly IEventService _eventService;
+
+    public HomeController(IVenueService venueService, IEventService eventService)
     {
+        _venueService = venueService;
+        _eventService = eventService;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var venues = await _venueService.GetPublicVenuesAsync();
+        var events = await _eventService.GetUpcomingPublicAsync();
+        ViewBag.Venues = venues;
+        ViewBag.Events = events;
         return View();
     }
 
-    public IActionResult Privacy()
+    public async Task<IActionResult> VenueDetail(int id)
     {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        var venue = await _venueService.GetByIdAsync(id);
+        if (venue is null) return NotFound();
+        var events = await _eventService.GetByVenueAsync(id);
+        ViewBag.Events = events;
+        return View(venue);
     }
 }

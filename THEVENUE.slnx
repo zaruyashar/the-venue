@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/THEVENUE.DB/">
+    <File Path="01_CreateTables.sql" />
+    <File Path="02_SeedData.sql" />
+    <File Path="03_StoredProcedures.sql" />
+  </Folder>
+  <Project Path="THEVENUE.API/THEVENUE.API.csproj" />
+  <Project Path="THEVENUE.MVC/THEVENUE.MVC.csproj" />
+</Solution>

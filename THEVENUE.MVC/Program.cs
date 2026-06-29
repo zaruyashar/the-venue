@@ -14,6 +14,7 @@ builder.Services.AddHttpClient("TheVenueApi", client =>
 builder.Services.AddScoped<IVenueService, VenueService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
 var app = builder.Build();
 

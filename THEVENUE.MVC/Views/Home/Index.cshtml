@@ -11,7 +11,7 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="item active">
-                <img src="~/lib-public/images/slider1.jpg" alt="THEVENUE" width="1920" height="770" />
+                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1920&h=770&q=80" alt="THEVENUE" width="1920" height="770" />
                 <div class="carousel-caption">
                     <div class="container">
                         <div class="col-md-5 col-sm-6 col-xs-9 pull-right">
@@ -34,7 +34,7 @@
             </div>
 
             <div class="item">
-                <img src="~/lib-public/images/slider2.jpg" alt="THEVENUE" width="1920" height="770" />
+                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1920&h=770&q=80" alt="THEVENUE" width="1920" height="770" />
                 <div class="carousel-caption">
                     <div class="container">
                         <div class="col-md-5 col-sm-6 col-xs-9 pull-right">
@@ -57,7 +57,7 @@
             </div>
 
             <div class="item">
-                <img src="~/lib-public/images/slider3.jpg" alt="THEVENUE" width="1920" height="770" />
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1920&h=770&q=80" alt="THEVENUE" width="1920" height="770" />
                 <div class="carousel-caption">
                     <div class="container">
                         <div class="col-md-5 col-sm-6 col-xs-9 pull-right">
@@ -99,13 +99,13 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="howwecan-left">
                     <div class="img-box">
-                        <img src="~/lib-public/images/howwecan1.jpg" alt="venue" width="149" height="149" />
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=150&h=150&q=80" alt="venue" width="149" height="149" />
                     </div>
                     <div class="img-box">
-                        <img src="~/lib-public/images/howwecan2.jpg" alt="venue" width="149" height="149" />
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=150&h=150&q=80" alt="venue" width="149" height="149" />
                     </div>
                     <div class="img-box">
-                        <img src="~/lib-public/images/howwecan3.jpg" alt="venue" width="149" height="149" />
+                        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=150&h=150&q=80" alt="venue" width="149" height="149" />
                     </div>
                 </div>
             </div>
@@ -299,18 +299,19 @@
         <div class="col-md-6 col-sm-6 no-padding">
             <div class="booking-form-block">
                 <h3>Send an Enquiry</h3>
-                <form>
+                <form asp-controller="Home" asp-action="SubmitContact" method="post">
+                    @Html.AntiForgeryToken()
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Full Name" />
+                        <input type="text" name="name" class="form-control" placeholder="Full Name" required />
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email Address" />
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" required />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Phone Number" />
+                        <input type="text" name="phone" class="form-control" placeholder="Phone Number" />
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="3" placeholder="Tell us about your event..."></textarea>
+                        <textarea name="message" class="form-control" rows="3" placeholder="Tell us about your event..." required></textarea>
                     </div>
                     <button type="submit" class="btn"
                             style="background:var(--tv-gold);color:var(--tv-navy);font-weight:700;letter-spacing:1px;text-transform:uppercase;width:100%;padding:12px;">

@@ -18,28 +18,281 @@
     <!-- DataTables (only loaded when a page needs it) -->
     @await RenderSectionAsync("DataTablesStyles", required: false)
 
-    <!-- THEVENUE Admin brand overrides -->
+    <!-- THEVENUE Admin brand overrides: Modern & Elite Redesign -->
     <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Outfit', sans-serif !important;
+            background-color: #fbf9f6 !important;
+        }
+
         :root {
             --tv-gold:  #c9a96e;
-            --tv-navy:  #1a1a2e;
-            --tv-cream: #f5f0e8;
+            --tv-gold-hover: #dfbe84;
+            --tv-navy:  #10101d; /* Deep rich elite navy */
+            --tv-sidebar-bg: #1a1a2e;
+            --tv-card-bg: #ffffff;
+            --tv-cream: #fbf9f6;
+            --tv-text-muted: #8e8ea0;
         }
-        /* Sidebar brand */
-        .sidebar-header { background: var(--tv-navy) !important; }
-        .logo-slogan div { color: var(--tv-gold) !important; font-size: 18px; letter-spacing: 3px; font-weight: 600; }
-        /* Topbar navbar */
-        header.navbar { background: var(--tv-navy) !important; border-bottom: 2px solid var(--tv-gold) !important; }
-        /* Active sidebar link gold accent */
-        .sidebar-menu li.active > a { border-left: 3px solid var(--tv-gold) !important; color: var(--tv-gold) !important; }
+        
+        /* Modernized Topbar */
+        header.navbar.navbar-fixed-top {
+            background: var(--tv-navy) !important;
+            border-bottom: 1px solid rgba(201, 169, 110, 0.15) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
+            backdrop-filter: blur(8px);
+            height: 60px !important;
+            padding-right: 25px !important;
+            padding-left: 15px !important;
+        }
+        
+        header.navbar .nav > li > a {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            line-height: 60px !important;
+            padding: 0 16px !important;
+        }
+        
+        header.navbar .nav > li > a:hover {
+            color: var(--tv-gold) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+        }
+        
+        .navbar-brand-custom {
+            font-family: 'Outfit', sans-serif;
+            color: var(--tv-gold) !important;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            line-height: 60px;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand-custom:hover {
+            color: var(--tv-gold-hover) !important;
+            text-shadow: 0 0 10px rgba(201, 169, 110, 0.3);
+        }
+
+        /* Modernized Sidebar */
+        #sidebar_left {
+            background: var(--tv-sidebar-bg) !important;
+            border-right: 1px solid rgba(201, 169, 110, 0.08) !important;
+            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.05);
+            top: 60px !important;
+        }
+        
+        .sidebar-header {
+            background: var(--tv-navy) !important;
+            border-bottom: 1px solid rgba(201, 169, 110, 0.08) !important;
+            padding: 20px 15px !important;
+        }
+        
+        .logo-slogan div {
+            color: var(--tv-gold) !important;
+            font-size: 20px !important;
+            letter-spacing: 4px !important;
+            font-weight: 700 !important;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .sidebar-menu {
+            padding: 15px 10px !important;
+        }
+        
+        .sidebar-menu li.sidebar-label {
+            color: var(--tv-text-muted) !important;
+            font-size: 11px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 2px !important;
+            font-weight: 600 !important;
+            padding: 25px 15px 8px 15px !important;
+        }
+        
+        .sidebar-menu li > a {
+            color: #b0b0c5 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            padding: 12px 18px !important;
+            border-radius: 8px !important;
+            margin-bottom: 4px !important;
+            transition: all 0.3s ease !important;
+            border-left: none !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+        }
+        
+        .sidebar-menu li > a:hover {
+            color: var(--tv-gold) !important;
+            background: rgba(201, 169, 110, 0.06) !important;
+            padding-left: 22px !important;
+        }
+        
+        .sidebar-menu li.active > a {
+            color: var(--tv-navy) !important;
+            background: var(--tv-gold) !important;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3) !important;
+        }
+        
+        .sidebar-menu li.active > a .sb-menu-icon {
+            color: var(--tv-navy) !important;
+        }
+        
+        .sb-menu-icon {
+            font-size: 16px !important;
+            color: #b0b0c5 !important;
+            margin-right: 12px;
+            transition: all 0.3s ease;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-menu li > a:hover .sb-menu-icon {
+            color: var(--tv-gold) !important;
+            transform: scale(1.1);
+        }
+
+        /* Message dot topbar */
+        .topbar-msg-btn {
+            position: relative;
+        }
+        .msg-badge {
+            position: absolute;
+            top: 15px;
+            right: 10px;
+            background: #d9534f;
+            border-radius: 50%;
+            width: 8px;
+            height: 8px;
+            border: 1px solid var(--tv-navy);
+            display: none; /* hidden until unread count > 0 */
+        }
+        
         /* TempData success toast */
-        .tv-toast { position:fixed; top:70px; right:20px; z-index:9999; min-width:260px; }
-        /* Status badges */
-        .badge-pending   { background:#f0ad4e; color:#fff; padding:3px 8px; border-radius:3px; font-size:11px; }
-        .badge-confirmed { background:#5cb85c; color:#fff; padding:3px 8px; border-radius:3px; font-size:11px; }
-        .badge-cancelled { background:#d9534f; color:#fff; padding:3px 8px; border-radius:3px; font-size:11px; }
-        /* KPI cards gold top border */
-        .kpi-card { border-top: 3px solid var(--tv-gold) !important; }
+        .tv-toast { position:fixed; top:75px; right:20px; z-index:9999; min-width:280px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 6px; }
+        
+        /* Badges */
+        .badge-pending {
+            background: rgba(240, 173, 78, 0.15) !important;
+            color: #f0ad4e !important;
+            border: 1px solid rgba(240, 173, 78, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .badge-confirmed {
+            background: rgba(92, 184, 92, 0.15) !important;
+            color: #5cb85c !important;
+            border: 1px solid rgba(92, 184, 92, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .badge-cancelled {
+            background: rgba(217, 83, 79, 0.15) !important;
+            color: #d9534f !important;
+            border: 1px solid rgba(217, 83, 79, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        /* Breadcrumbs and Topbar Alt Header */
+        #topbar.alt {
+            background: transparent !important;
+            border-bottom: none !important;
+            padding: 20px 25px 5px !important;
+        }
+        
+        .breadcrumb {
+            background: transparent !important;
+            padding: 0 !important;
+            font-size: 13px;
+        }
+        
+        .breadcrumb a {
+            color: var(--tv-gold) !important;
+            text-decoration: none;
+        }
+        
+        .breadcrumb-current-item {
+            color: var(--tv-navy) !important;
+            font-weight: 500;
+        }
+        
+        /* Table / Panel Customizations */
+        .panel {
+            background: #fff;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03) !important;
+            border: 1px solid rgba(0,0,0,0.04) !important;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+        
+        .panel-heading {
+            background: var(--tv-navy) !important;
+            padding: 16px 20px !important;
+            border-bottom: 1px solid rgba(201, 169, 110, 0.1) !important;
+        }
+        
+        .panel-heading h4 {
+            color: #ffffff !important;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+            letter-spacing: 1px;
+        }
+        
+        .panel-body {
+            padding: 20px !important;
+        }
+        
+        .table {
+            margin-bottom: 0 !important;
+        }
+        
+        .table > thead > tr > th {
+            font-weight: 600 !important;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #eee !important;
+            color: #555;
+            padding: 12px 10px !important;
+        }
+        
+        .table > tbody > tr > td {
+            font-size: 14px;
+            color: #444;
+            padding: 14px 10px !important;
+            border-top: 1px solid #f3f3f3 !important;
+            vertical-align: middle !important;
+        }
+        
+        /* KPI Cards custom */
+        .kpi-card {
+            border-top: none !important;
+            border-left: 4px solid var(--tv-gold) !important;
+            transition: all 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06) !important;
+        }
     </style>
 
     @await RenderSectionAsync("Styles", required: false)
@@ -63,26 +316,33 @@
 
         <!-- Brand centre -->
         <div class="navbar-header" style="position:absolute;left:50%;transform:translateX(-50%);">
-            <span style="color:var(--tv-gold);font-size:18px;letter-spacing:4px;font-weight:600;line-height:50px;">
+            <a asp-controller="Dashboard" asp-action="Index" class="navbar-brand-custom">
                 THEVENUE
-            </span>
+            </a>
         </div>
 
         <ul class="nav navbar-nav navbar-right">
+            <!-- Messages Link (red dot indicator) -->
+            <li>
+                <a asp-controller="Contacts" asp-action="Index" class="topbar-msg-btn" title="Inbox" style="line-height:60px; color:#fff; display: flex; align-items: center; position: relative;">
+                    <span class="fa fa-envelope fs18" style="color:var(--tv-gold);"></span>
+                    <span class="msg-badge" id="unread-dot"></span>
+                </a>
+            </li>
             <!-- Public site link -->
             <li>
                 <a asp-controller="Home" asp-action="Index"
-                   class="btn-hover-effects btn" title="View Public Site" style="line-height:50px;color:#fff;">
+                   class="btn-hover-effects btn" title="View Public Site" style="line-height:60px;color:#fff;">
                     <span class="fa fa-external-link"></span>
                     <span class="hidden-xs hidden-sm" style="margin-left:5px;">Public Site</span>
                 </a>
             </li>
             <!-- Admin user placeholder (Identity will populate this later) -->
             <li class="dropdown dropdown-fuse navbar-user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="fa fa-user-circle fs20" style="color:var(--tv-gold);"></span>
-                    <span class="hidden-xs" style="margin-left:5px;color:#fff;">Admin</span>
-                    <span class="fa fa-caret-down hidden-xs" style="color:#fff;"></span>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="line-height: 60px;">
+                    <span class="fa fa-user-circle fs20" style="color:var(--tv-gold); vertical-align: middle;"></span>
+                    <span class="hidden-xs" style="margin-left:5px;color:#fff; vertical-align: middle;">Admin</span>
+                    <span class="fa fa-caret-down hidden-xs" style="color:#fff; vertical-align: middle;"></span>
                 </a>
                 <ul class="dropdown-menu list-group keep-dropdown w200" role="menu">
                     <li class="dropdown-footer text-center">
@@ -147,6 +407,15 @@
                     </a>
                 </li>
 
+                <!-- Messages -->
+                <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Contacts" ? "active" : "")">
+                    <a asp-controller="Contacts" asp-action="Index">
+                        <span class="sidebar-title">Messages</span>
+                        <span class="sb-menu-icon fa fa-envelope"></span>
+                        <span class="badge" id="sidebar-msg-badge" style="display:none;background:#d9534f;color:#fff;font-weight:700;padding:3px 8px;border-radius:10px;margin-left:auto;font-size:10px;">0</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </aside>
@@ -189,9 +458,7 @@
         <!-- Page Body -->
         <section id="content" class="table-layout animated fadeIn">
             <div class="chute chute-center">
-                <div class="allcp-panels fade-onload">
-                    @RenderBody()
-                </div>
+                @RenderBody()
             </div>
         </section>
 
@@ -213,14 +480,42 @@
 <script src="~/lib-admin/js/utility/utility.js"></script>
 <script src="~/lib-admin/js/main.js"></script>
 
-<!-- Sidebar toggle wiring -->
+<!-- Sidebar toggle & Dynamic Badges wiring -->
 <script>
     $(function () {
+        // Init theme core features (scrollbars, side menu, etc.)
+        Core.init();
+
         $('#sidebar-left-toggle').on('click', function () {
             $('body').toggleClass('sb-l-o').toggleClass('sb-l-c');
         });
         // Auto-dismiss toasts after 4s
         setTimeout(function () { $('.tv-toast').fadeOut(400); }, 4000);
+
+        // Fetch unread messages count periodically
+        function updateUnreadCount() {
+            $.ajax({
+                url: '/admin/contacts/unread-count',
+                type: 'GET',
+                cache: false,
+                success: function (data) {
+                    if (data && data.count > 0) {
+                        $('#unread-dot').fadeIn();
+                        $('#sidebar-msg-badge').text(data.count).fadeIn();
+                    } else {
+                        $('#unread-dot').fadeOut();
+                        $('#sidebar-msg-badge').fadeOut();
+                    }
+                },
+                error: function() {
+                    // Ignore errors to avoid logging noise
+                }
+            });
+        }
+
+        // Run immediately on page load, and poll every 20s
+        updateUnreadCount();
+        setInterval(updateUnreadCount, 20000);
     });
 </script>
 

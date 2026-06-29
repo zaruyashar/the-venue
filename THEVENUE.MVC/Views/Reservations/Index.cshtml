@@ -1,0 +1,184 @@
+@model IEnumerable<THEVENUE.MVC.Models.Reservation>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Reservations";
+}
+
+@section DataTablesStyles {
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/js/plugins/datatables/media/css/dataTables.bootstrap.css">
+}
+
+@section TopbarActions {
+    <a asp-controller="Reservations" asp-action="Create"
+       class="btn btn-sm" style="background:var(--tv-gold);color:var(--tv-navy);font-weight:600;">
+        <i class="fa fa-plus"></i> Add Reservation
+    </a>
+    <button onclick="exportTableToCSV()" class="btn btn-sm btn-default" style="margin-left:8px;">
+        <i class="fa fa-download"></i> Export CSV
+    </button>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading" style="background:var(--tv-navy);border:none;">
+                <h4 style="margin:0;color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:1px;">
+                    <i class="fa fa-ticket" style="color:var(--tv-gold);margin-right:8px;"></i>
+                    All Reservations
+                </h4>
+            </div>
+            <div class="panel-body" style="overflow-x:auto;">
+                <table id="reservations-table" class="table table-bordered table-hover" style="width:100%;">
+                    <thead>
+                        <tr style="background:var(--tv-cream);">
+                            <th>#</th>
+                            <th>Guest</th>
+                            <th>Venue</th>
+                            <th>Event</th>
+                            <th>Guests</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th style="width:160px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var r in Model)
+                        {
+                            <tr>
+                                <td>@r.ReservationId</td>
+                                <td>
+                                    <strong>@r.GuestName</strong><br />
+                                    <small style="color:#888;">
+                                        <i class="fa fa-envelope" style="color:var(--tv-gold);"></i> @r.GuestEmail
+                                    </small>
+                                    @if (!string.IsNullOrEmpty(r.GuestPhone))
+                                    {
+                                        <br /><small style="color:#888;">
+                                            <i class="fa fa-phone" style="color:var(--tv-gold);"></i> @r.GuestPhone
+                                        </small>
+                                    }
+                                </td>
+                                <td>@r.VenueName</td>
+                                <td>@r.EventTitle</td>
+                                <td style="text-align:center;">@r.GuestCount</td>
+                                <td><strong>$@r.TotalAmount.ToString("N2")</strong></td>
+                                <td>
+                                    @{
+                                        var badgeClass = r.Status switch
+                                        {
+                                            "Confirmed" => "badge-confirmed",
+                                            "Cancelled" => "badge-cancelled",
+                                            _ => "badge-pending"
+                                        };
+                                    }
+                                    <span class="@badgeClass">@r.Status</span>
+                                </td>
+                                <td>@r.CreatedAt.ToString("dd MMM yyyy")</td>
+                                <td>
+                                    <!-- Edit -->
+                                    <a asp-controller="Reservations" asp-action="Edit" asp-route-id="@r.ReservationId"
+                                       class="btn btn-xs btn-info" title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+
+                                    <!-- Quick status toggle -->
+                                    <div class="btn-group" style="margin:0 2px;">
+                                        <button class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" title="Change Status">
+                                            <i class="fa fa-exchange"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-right" style="min-width:130px;">
+                                            <li>
+                                                <form asp-controller="Reservations" asp-action="UpdateStatus"
+                                                      asp-route-id="@r.ReservationId" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="status" value="Pending" />
+                                                    <button type="submit" class="btn btn-link" style="color:#f0ad4e;padding:4px 15px;width:100%;text-align:left;">
+                                                        <i class="fa fa-clock-o"></i> Pending
+                                                    </button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <form asp-controller="Reservations" asp-action="UpdateStatus"
+                                                      asp-route-id="@r.ReservationId" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="status" value="Confirmed" />
+                                                    <button type="submit" class="btn btn-link" style="color:#5cb85c;padding:4px 15px;width:100%;text-align:left;">
+                                                        <i class="fa fa-check"></i> Confirmed
+                                                    </button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <form asp-controller="Reservations" asp-action="UpdateStatus"
+                                                      asp-route-id="@r.ReservationId" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="status" value="Cancelled" />
+                                                    <button type="submit" class="btn btn-link" style="color:#d9534f;padding:4px 15px;width:100%;text-align:left;">
+                                                        <i class="fa fa-times"></i> Cancelled
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Delete -->
+                                    <form asp-controller="Reservations" asp-action="Delete" asp-route-id="@r.ReservationId"
+                                          method="post" style="display:inline;"
+                                          onsubmit="return confirm('Delete reservation for \'@r.GuestName\'?');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-xs btn-danger" title="Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section DataTablesScripts {
+    <script src="~/lib-admin/js/plugins/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="~/lib-admin/js/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script>
+        var dt;
+        $(function () {
+            dt = $('#reservations-table').DataTable({
+                pageLength: 20,
+                order: [[0, 'desc']],
+                dom: '<"row"<"col-sm-6"l><"col-sm-6"f>>rt<"row"<"col-sm-6"i><"col-sm-6"p>>',
+                language: { search: '<i class="fa fa-search"></i>', searchPlaceholder: 'Search reservations...' }
+            });
+        });
+
+        function exportTableToCSV() {
+            var rows = [['ID','Guest','Email','Phone','Venue','Event','Guests','Amount','Status','Created']];
+            dt.rows({ search: 'applied' }).data().each(function (row, i) {
+                var cells = $(dt.row(i).node()).find('td');
+                rows.push([
+                    $(cells[0]).text().trim(),
+                    $(cells[1]).find('strong').text().trim(),
+                    $(cells[1]).find('small').eq(0).text().replace(/\s+/g,' ').trim(),
+                    $(cells[1]).find('small').eq(1).text().replace(/\s+/g,' ').trim(),
+                    $(cells[2]).text().trim(),
+                    $(cells[3]).text().trim(),
+                    $(cells[4]).text().trim(),
+                    $(cells[5]).text().trim(),
+                    $(cells[6]).text().trim(),
+                    $(cells[7]).text().trim()
+                ]);
+            });
+            var csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g,'""') + '"').join(',')).join('\n');
+            var blob = new Blob([csv], { type: 'text/csv' });
+            var url  = URL.createObjectURL(blob);
+            var a    = document.createElement('a');
+            a.href = url;
+            a.download = 'reservations_' + new Date().toISOString().slice(0,10) + '.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+}

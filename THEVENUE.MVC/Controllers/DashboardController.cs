@@ -3,7 +3,6 @@ using THEVENUE.MVC.Services;
 
 namespace THEVENUE.MVC.Controllers;
 
-[Area("")]
 [Route("admin/dashboard")]
 public class DashboardController : Controller
 {

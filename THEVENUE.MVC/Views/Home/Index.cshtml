@@ -1,0 +1,324 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Welcome";
+    var venues = ViewBag.Venues as IEnumerable<THEVENUE.MVC.Models.Venue> ?? new List<THEVENUE.MVC.Models.Venue>();
+    var events = ViewBag.Events as IEnumerable<THEVENUE.MVC.Models.Event> ?? new List<THEVENUE.MVC.Models.Event>();
+}
+
+<!-- ===================== HERO SLIDER ===================== -->
+<div id="slider-section" class="slider-section container-fluid no-padding">
+    <div id="hero-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+
+            <div class="item active">
+                <img src="~/lib-public/images/slider1.jpg" alt="THEVENUE" width="1920" height="770" />
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="col-md-5 col-sm-6 col-xs-9 pull-right">
+                            <div class="slider-content-box">
+                                <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                    <h3 class="slider-title">Exceptional Spaces for Extraordinary Events</h3>
+                                    <span>İstanbul's Premier Event Venues</span>
+                                    <p>From intimate gatherings to grand galas — we provide the perfect backdrop.</p>
+                                </div>
+                                <div class="col-md-12 no-padding" style="margin-top:20px;">
+                                    <a href="#venues-section" title="Browse Venues"
+                                       style="background:var(--tv-gold);color:#1a1a2e;padding:12px 28px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">
+                                        Browse Venues
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="~/lib-public/images/slider2.jpg" alt="THEVENUE" width="1920" height="770" />
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="col-md-5 col-sm-6 col-xs-9 pull-right">
+                            <div class="slider-content-box">
+                                <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                    <h3 class="slider-title">Where Memories Are Made</h3>
+                                    <span>Weddings · Corporate Events · Concerts</span>
+                                    <p>State-of-the-art facilities with unparalleled service.</p>
+                                </div>
+                                <div class="col-md-12 no-padding" style="margin-top:20px;">
+                                    <a href="#events-section" title="Upcoming Events"
+                                       style="background:var(--tv-gold);color:#1a1a2e;padding:12px 28px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">
+                                        Upcoming Events
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="~/lib-public/images/slider3.jpg" alt="THEVENUE" width="1920" height="770" />
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="col-md-5 col-sm-6 col-xs-9 pull-right">
+                            <div class="slider-content-box">
+                                <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                    <h3 class="slider-title">Rooftop Views, World-Class Hospitality</h3>
+                                    <span>Bosphorus Skyline Venues</span>
+                                    <p>Breathtaking views that elevate every occasion.</p>
+                                </div>
+                                <div class="col-md-12 no-padding" style="margin-top:20px;">
+                                    <a href="#contact-section" title="Contact Us"
+                                       style="background:var(--tv-gold);color:#1a1a2e;padding:12px 28px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">
+                                        Get In Touch
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            <a class="left carousel-control" href="#hero-carousel" role="button" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="right carousel-control" href="#hero-carousel" role="button" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== WHY THEVENUE ===================== -->
+<div class="container-fluid no-padding howwecan-section">
+    <div class="section-padding"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="howwecan-left">
+                    <div class="img-box">
+                        <img src="~/lib-public/images/howwecan1.jpg" alt="venue" width="149" height="149" />
+                    </div>
+                    <div class="img-box">
+                        <img src="~/lib-public/images/howwecan2.jpg" alt="venue" width="149" height="149" />
+                    </div>
+                    <div class="img-box">
+                        <img src="~/lib-public/images/howwecan3.jpg" alt="venue" width="149" height="149" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <div class="howwecan-right">
+                    <div class="section-header">
+                        <h3>Why choose THEVENUE for your event?</h3>
+                    </div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#why_1" data-toggle="tab">
+                                <span class="icon icon-WorldWide"></span>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#why_2" data-toggle="tab">
+                                <span class="icon icon-Briefcase"></span>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#why_3" data-toggle="tab">
+                                <span class="icon icon-Notes"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="why_1">
+                            <h3>Prime Locations</h3>
+                            <p>Our venues are strategically located across İstanbul's most prestigious districts — Beşiktaş, Üsküdar, and Karaköy — with easy transport access and stunning surroundings.</p>
+                            <a href="#venues-section" title="See Venues">See our venues</a>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="why_2">
+                            <h3>Expert Event Support</h3>
+                            <p>Our dedicated team works with you from the first inquiry through to the final guest's departure — coordinating catering, AV, décor, and logistics so you don't have to.</p>
+                            <a href="#contact-section" title="Contact Us">Talk to our team</a>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="why_3">
+                            <h3>Flexible Packages</h3>
+                            <p>Whether you need a space for two hours or an all-weekend takeover, our pricing is transparent and our packages are fully customisable to your needs and budget.</p>
+                            <a href="#contact-section" title="Get a Quote">Get a quote</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-padding"></div>
+</div>
+
+<!-- ===================== VENUE CATALOGUE ===================== -->
+<div id="venues-section" class="container-fluid no-padding" style="background:var(--tv-cream);">
+    <div class="section-padding"></div>
+    <div class="container">
+        <div class="section-header">
+            <h3>Our Venues</h3>
+            <span>Browse our spaces</span>
+        </div>
+
+        @if (!venues.Any())
+        {
+            <div class="text-center" style="padding:40px 0;">
+                <p style="color:#888;">No venues available at this time. Please check back soon.</p>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var venue in venues)
+                {
+                    <div class="col-md-4 col-sm-6 col-xs-12" style="margin-bottom:30px;">
+                        <div class="panel panel-default" style="border-top:3px solid var(--tv-gold);box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+                            @if (!string.IsNullOrEmpty(venue.ImageUrl))
+                            {
+                                <img src="@venue.ImageUrl" alt="@venue.Name"
+                                     style="width:100%;height:200px;object-fit:cover;" />
+                            }
+                            else
+                            {
+                                <div style="width:100%;height:200px;background:#1a1a2e;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa fa-building" style="font-size:48px;color:var(--tv-gold);opacity:0.5;"></i>
+                                </div>
+                            }
+                            <div class="panel-body">
+                                <h4 style="color:var(--tv-navy);font-weight:600;">@venue.Name</h4>
+                                <p style="color:#666;font-size:13px;">
+                                    <i class="fa fa-map-marker" style="color:var(--tv-gold);"></i>
+                                    @venue.Location
+                                </p>
+                                <p style="color:#888;font-size:13px;">@venue.Description</p>
+                                <div style="display:flex;justify-content:space-between;margin-top:15px;padding-top:15px;border-top:1px solid #eee;">
+                                    <span style="font-size:13px;color:#666;">
+                                        <i class="fa fa-users" style="color:var(--tv-gold);"></i>
+                                        Up to @venue.Capacity guests
+                                    </span>
+                                    <span style="font-size:13px;color:#666;">
+                                        <i class="fa fa-tag" style="color:var(--tv-gold);"></i>
+                                        $@venue.PricePerHour.ToString("N0")/hr
+                                    </span>
+                                </div>
+                                <div style="margin-top:15px;">
+                                    <a asp-controller="Home" asp-action="VenueDetail" asp-route-id="@venue.VenueId"
+                                       style="display:block;text-align:center;background:var(--tv-navy);color:var(--tv-gold);padding:10px;text-transform:uppercase;letter-spacing:1px;font-size:12px;font-weight:600;">
+                                        View Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div class="section-padding"></div>
+</div>
+
+<!-- ===================== UPCOMING EVENTS ===================== -->
+@if (events.Any())
+{
+    <div id="events-section" class="container-fluid no-padding schedule-section">
+        <div class="section-padding"></div>
+        <div class="container">
+            <div class="section-header">
+                <h3>Upcoming Events</h3>
+                <span>What's on at THEVENUE</span>
+            </div>
+            <div class="row">
+                @foreach (var ev in events)
+                {
+                    <div class="col-md-4 col-sm-6 col-xs-12" style="margin-bottom:25px;">
+                        <div class="panel panel-default" style="border-left:4px solid var(--tv-gold);">
+                            <div class="panel-body">
+                                <div style="display:flex;align-items:flex-start;gap:15px;">
+                                    <div style="background:var(--tv-navy);color:var(--tv-gold);padding:10px 15px;text-align:center;min-width:60px;border-radius:4px;">
+                                        <div style="font-size:22px;font-weight:700;line-height:1;">@ev.StartDate.Day</div>
+                                        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;">@ev.StartDate.ToString("MMM")</div>
+                                    </div>
+                                    <div>
+                                        <h5 style="margin:0 0 5px;color:var(--tv-navy);font-weight:600;">@ev.Title</h5>
+                                        <p style="margin:0;font-size:12px;color:#888;">
+                                            <i class="fa fa-building" style="color:var(--tv-gold);"></i> @ev.VenueName
+                                        </p>
+                                        <p style="margin:4px 0 0;font-size:12px;color:#888;">
+                                            <i class="fa fa-clock-o" style="color:var(--tv-gold);"></i>
+                                            @ev.StartDate.ToString("HH:mm") – @ev.EndDate.ToString("HH:mm")
+                                        </p>
+                                        @if (!string.IsNullOrEmpty(ev.EventType))
+                                        {
+                                            <span style="display:inline-block;margin-top:8px;background:var(--tv-cream);color:var(--tv-navy);padding:2px 10px;border-radius:12px;font-size:11px;font-weight:600;border:1px solid var(--tv-gold);">
+                                                @ev.EventType
+                                            </span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="section-padding"></div>
+    </div>
+}
+
+<!-- ===================== HURRY UP / CTA SECTION ===================== -->
+<div class="container-fluid hurryup-booking-section no-padding">
+    <div class="container">
+        <div class="col-md-6 col-sm-6 no-padding">
+            <div class="hurryup-block">
+                <div class="timer-box">
+                    <h3>Reserve Your Space Today</h3>
+                    <p>Our most popular venues fill up months in advance. Don't miss your date — get in touch with our reservations team and we'll get back to you within 24 hours.</p>
+                    <div style="margin-top:25px;">
+                        <div style="display:flex;gap:30px;">
+                            <div style="text-align:center;">
+                                <div style="font-size:36px;font-weight:700;color:var(--tv-gold);">@venues.Count()</div>
+                                <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#ccc;">Venues</div>
+                            </div>
+                            <div style="text-align:center;">
+                                <div style="font-size:36px;font-weight:700;color:var(--tv-gold);">@events.Count()</div>
+                                <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#ccc;">Upcoming Events</div>
+                            </div>
+                            <div style="text-align:center;">
+                                <div style="font-size:36px;font-weight:700;color:var(--tv-gold);">100%</div>
+                                <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#ccc;">Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 no-padding">
+            <div class="booking-form-block">
+                <h3>Send an Enquiry</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Full Name" />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Phone Number" />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Tell us about your event..."></textarea>
+                    </div>
+                    <button type="submit" class="btn"
+                            style="background:var(--tv-gold);color:var(--tv-navy);font-weight:700;letter-spacing:1px;text-transform:uppercase;width:100%;padding:12px;">
+                        Send Enquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="section-padding"></div>
+</div>

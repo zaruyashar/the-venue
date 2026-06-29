@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - THEVENUE Admin</title>
+
+    <!-- Micro Office: core CSS stack -->
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/skin/css/angular-material.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/fonts/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/fonts/animatedsvgicons/css/codropsicons.css">
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/js/plugins/magnific/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/js/plugins/c3charts/c3.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/allcp/forms/css/forms.css">
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/js/utility/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/skin/default_skin/less/theme.css">
+
+    <!-- DataTables (only loaded when a page needs it) -->
+    @await RenderSectionAsync("DataTablesStyles", required: false)
+
+    <!-- THEVENUE Admin brand overrides -->
+    <style>
+        :root {
+            --tv-gold:  #c9a96e;
+            --tv-navy:  #1a1a2e;
+            --tv-cream: #f5f0e8;
+        }
+        /* Sidebar brand */
+        .sidebar-header { background: var(--tv-navy) !important; }
+        .logo-slogan div { color: var(--tv-gold) !important; font-size: 18px; letter-spacing: 3px; font-weight: 600; }
+        /* Topbar navbar */
+        header.navbar { background: var(--tv-navy) !important; border-bottom: 2px solid var(--tv-gold) !important; }
+        /* Active sidebar link gold accent */
+        .sidebar-menu li.active > a { border-left: 3px solid var(--tv-gold) !important; color: var(--tv-gold) !important; }
+        /* TempData success toast */
+        .tv-toast { position:fixed; top:70px; right:20px; z-index:9999; min-width:260px; }
+        /* Status badges */
+        .badge-pending   { background:#f0ad4e; color:#fff; padding:3px 8px; border-radius:3px; font-size:11px; }
+        .badge-confirmed { background:#5cb85c; color:#fff; padding:3px 8px; border-radius:3px; font-size:11px; }
+        .badge-cancelled { background:#d9534f; color:#fff; padding:3px 8px; border-radius:3px; font-size:11px; }
+        /* KPI cards gold top border */
+        .kpi-card { border-top: 3px solid var(--tv-gold) !important; }
+    </style>
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body class="dashboard-page sb-l-o sb-r-c">
+<div id="main">
+
+    <!-- ===================== TOP NAVBAR ===================== -->
+    <header class="navbar navbar-fixed-top">
+        <ul class="nav navbar-nav navbar-left">
+            <!-- Sidebar toggle -->
+            <li>
+                <div class="navbar-btn btn-group phn">
+                    <button class="btn-hover-effects btn sidebar-toggle" id="sidebar-left-toggle">
+                        <span class="fa fa-bars fs18"></span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+
+        <!-- Brand centre -->
+        <div class="navbar-header" style="position:absolute;left:50%;transform:translateX(-50%);">
+            <span style="color:var(--tv-gold);font-size:18px;letter-spacing:4px;font-weight:600;line-height:50px;">
+                THEVENUE
+            </span>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <!-- Public site link -->
+            <li>
+                <a asp-controller="Home" asp-action="Index"
+                   class="btn-hover-effects btn" title="View Public Site" style="line-height:50px;color:#fff;">
+                    <span class="fa fa-external-link"></span>
+                    <span class="hidden-xs hidden-sm" style="margin-left:5px;">Public Site</span>
+                </a>
+            </li>
+            <!-- Admin user placeholder (Identity will populate this later) -->
+            <li class="dropdown dropdown-fuse navbar-user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="fa fa-user-circle fs20" style="color:var(--tv-gold);"></span>
+                    <span class="hidden-xs" style="margin-left:5px;color:#fff;">Admin</span>
+                    <span class="fa fa-caret-down hidden-xs" style="color:#fff;"></span>
+                </a>
+                <ul class="dropdown-menu list-group keep-dropdown w200" role="menu">
+                    <li class="dropdown-footer text-center">
+                        <a href="#" class="btn btn-warning btn-sm">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <!-- ===================== /TOP NAVBAR ===================== -->
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside id="sidebar_left" class="nano affix">
+        <div class="sidebar-left-content nano-content">
+
+            <!-- Logo -->
+            <header class="sidebar-header">
+                <div class="sidebar-widget logo-widget" style="padding:20px 15px;">
+                    <div class="logo-slogan">
+                        <div>THEVENUE</div>
+                        <small style="color:#888;font-size:10px;letter-spacing:1px;">ADMIN PANEL</small>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Nav -->
+            <ul class="nav sidebar-menu">
+
+                <li class="sidebar-label pt20">Main</li>
+
+                <!-- Dashboard -->
+                <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")">
+                    <a asp-controller="Dashboard" asp-action="Index">
+                        <span class="sidebar-title">Dashboard</span>
+                        <span class="sb-menu-icon fa fa-home"></span>
+                    </a>
+                </li>
+
+                <li class="sidebar-label pt20">Management</li>
+
+                <!-- Venues -->
+                <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Venues" ? "active" : "")">
+                    <a asp-controller="Venues" asp-action="Index">
+                        <span class="sidebar-title">Venues</span>
+                        <span class="sb-menu-icon fa fa-building"></span>
+                    </a>
+                </li>
+
+                <!-- Events -->
+                <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Events" ? "active" : "")">
+                    <a asp-controller="Events" asp-action="Index">
+                        <span class="sidebar-title">Events</span>
+                        <span class="sb-menu-icon fa fa-calendar"></span>
+                    </a>
+                </li>
+
+                <!-- Reservations -->
+                <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Reservations" ? "active" : "")">
+                    <a asp-controller="Reservations" asp-action="Index">
+                        <span class="sidebar-title">Reservations</span>
+                        <span class="sb-menu-icon fa fa-ticket"></span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </aside>
+    <!-- ===================== /SIDEBAR ===================== -->
+
+    <!-- ===================== CONTENT WRAPPER ===================== -->
+    <section id="content_wrapper">
+
+        <!-- Topbar breadcrumb -->
+        <header id="topbar" class="alt">
+            <div class="topbar-left">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-link">
+                        <a asp-controller="Dashboard" asp-action="Index">Home</a>
+                    </li>
+                    <li class="breadcrumb-current-item">@ViewData["Title"]</li>
+                </ol>
+            </div>
+            <div class="topbar-right" style="padding:12px 20px;">
+                @await RenderSectionAsync("TopbarActions", required: false)
+            </div>
+        </header>
+
+        <!-- Success / error toasts from TempData -->
+        @if (TempData["Success"] != null)
+        {
+            <div class="tv-toast alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                <strong><i class="fa fa-check-circle"></i></strong> @TempData["Success"]
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="tv-toast alert alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                <strong><i class="fa fa-times-circle"></i></strong> @TempData["Error"]
+            </div>
+        }
+
+        <!-- Page Body -->
+        <section id="content" class="table-layout animated fadeIn">
+            <div class="chute chute-center">
+                <div class="allcp-panels fade-onload">
+                    @RenderBody()
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <!-- ===================== /CONTENT WRAPPER ===================== -->
+
+</div><!-- /#main -->
+
+<!-- ===================== JS ===================== -->
+<script src="~/lib-admin/js/jquery/jquery-1.12.3.min.js"></script>
+<script src="~/lib-admin/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+<script src="~/lib-admin/fonts/animatedsvgicons/js/snap.svg-min.js"></script>
+<script src="~/lib-admin/fonts/animatedsvgicons/js/svgicons-config.js"></script>
+<script src="~/lib-admin/fonts/animatedsvgicons/js/svgicons.js"></script>
+<script src="~/lib-admin/fonts/animatedsvgicons/js/svgicons-init.js"></script>
+<script src="~/lib-admin/js/utility/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="~/lib-admin/js/plugins/c3charts/d3.min.js"></script>
+<script src="~/lib-admin/js/plugins/c3charts/c3.min.js"></script>
+<script src="~/lib-admin/js/utility/utility.js"></script>
+<script src="~/lib-admin/js/main.js"></script>
+
+<!-- Sidebar toggle wiring -->
+<script>
+    $(function () {
+        $('#sidebar-left-toggle').on('click', function () {
+            $('body').toggleClass('sb-l-o').toggleClass('sb-l-c');
+        });
+        // Auto-dismiss toasts after 4s
+        setTimeout(function () { $('.tv-toast').fadeOut(400); }, 4000);
+    });
+</script>
+
+@await RenderSectionAsync("DataTablesScripts", required: false)
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,103 @@
+@model IEnumerable<THEVENUE.MVC.Models.Venue>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Venues";
+}
+
+@section DataTablesStyles {
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/js/plugins/datatables/media/css/dataTables.bootstrap.css">
+}
+
+@section TopbarActions {
+    <a asp-controller="Venues" asp-action="Create"
+       class="btn btn-sm" style="background:var(--tv-gold);color:var(--tv-navy);font-weight:600;">
+        <i class="fa fa-plus"></i> Add Venue
+    </a>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading" style="background:var(--tv-navy);border:none;">
+                <h4 style="margin:0;color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:1px;">
+                    <i class="fa fa-building" style="color:var(--tv-gold);margin-right:8px;"></i>
+                    All Venues
+                </h4>
+            </div>
+            <div class="panel-body">
+                <table id="venues-table" class="table table-bordered table-hover" style="width:100%;">
+                    <thead>
+                        <tr style="background:var(--tv-cream);">
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Capacity</th>
+                            <th>Price/Hr</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th style="width:130px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var venue in Model)
+                        {
+                            <tr>
+                                <td>@venue.VenueId</td>
+                                <td>
+                                    <strong>@venue.Name</strong>
+                                    @if (!string.IsNullOrEmpty(venue.Description))
+                                    {
+                                        <br /><small style="color:#888;">@(venue.Description.Length > 60 ? venue.Description[..60] + "…" : venue.Description)</small>
+                                    }
+                                </td>
+                                <td><i class="fa fa-map-marker" style="color:var(--tv-gold);"></i> @venue.Location</td>
+                                <td>@venue.Capacity</td>
+                                <td>$@venue.PricePerHour.ToString("N2")</td>
+                                <td>
+                                    @if (venue.IsActive)
+                                    {
+                                        <span class="badge-confirmed">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge-cancelled">Inactive</span>
+                                    }
+                                </td>
+                                <td>@venue.CreatedAt.ToString("dd MMM yyyy")</td>
+                                <td>
+                                    <a asp-controller="Venues" asp-action="Edit" asp-route-id="@venue.VenueId"
+                                       class="btn btn-xs btn-info" title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <form asp-controller="Venues" asp-action="Delete" asp-route-id="@venue.VenueId"
+                                          method="post" style="display:inline;"
+                                          onsubmit="return confirm('Delete \'@venue.Name\'? This cannot be undone.');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-xs btn-danger" title="Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section DataTablesScripts {
+    <script src="~/lib-admin/js/plugins/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="~/lib-admin/js/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script>
+        $(function () {
+            $('#venues-table').DataTable({
+                pageLength: 15,
+                order: [[0, 'desc']],
+                dom: '<"row"<"col-sm-6"l><"col-sm-6"f>>rt<"row"<"col-sm-6"i><"col-sm-6"p>>',
+                language: { search: '<i class="fa fa-search"></i>', searchPlaceholder: 'Search venues...' }
+            });
+        });
+    </script>
+}

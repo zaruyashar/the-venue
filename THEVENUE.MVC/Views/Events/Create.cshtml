@@ -1,0 +1,113 @@
+@model THEVENUE.MVC.Models.Event
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Create Event";
+}
+
+@section TopbarActions {
+    <a asp-controller="Events" asp-action="Index" class="btn btn-sm btn-default">
+        <i class="fa fa-arrow-left"></i> Back to Events
+    </a>
+}
+
+<div class="row">
+    <div class="col-md-9 col-md-offset-1">
+        <div class="panel">
+            <div class="panel-heading" style="background:var(--tv-navy);border:none;">
+                <h4 style="margin:0;color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:1px;">
+                    <i class="fa fa-plus" style="color:var(--tv-gold);margin-right:8px;"></i>
+                    New Event
+                </h4>
+            </div>
+            <div class="panel-body">
+                <form asp-controller="Events" asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" style="display:@(ViewData.ModelState.IsValid ? "none" : "block");"></div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label asp-for="Title" class="control-label">Event Title <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="Title" class="form-control" placeholder="e.g. Annual Gala Night 2026" />
+                                <span asp-validation-for="Title" class="text-danger small"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="EventType" class="control-label">Event Type</label>
+                                <select asp-for="EventType" class="form-control">
+                                    <option value="">— Select type —</option>
+                                    <option>Wedding</option>
+                                    <option>Corporate</option>
+                                    <option>Concert</option>
+                                    <option>Birthday</option>
+                                    <option>Conference</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="VenueId" class="control-label">Venue <span style="color:#d9534f;">*</span></label>
+                                <select asp-for="VenueId" asp-items="ViewBag.Venues" class="form-control">
+                                    <option value="">— Select a venue —</option>
+                                </select>
+                                <span asp-validation-for="VenueId" class="text-danger small"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ExpectedAttendees" class="control-label">Expected Attendees</label>
+                                <input asp-for="ExpectedAttendees" class="form-control" type="number" min="1" placeholder="e.g. 200" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="StartDate" class="control-label">Start Date & Time <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="StartDate" class="form-control" type="datetime-local" />
+                                <span asp-validation-for="StartDate" class="text-danger small"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="EndDate" class="control-label">End Date & Time <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="EndDate" class="form-control" type="datetime-local" />
+                                <span asp-validation-for="EndDate" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="4"
+                                  placeholder="Describe the event..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="IsPublic" type="checkbox" checked="checked" />
+                                <strong>Public</strong> — show this event on the landing page
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div style="display:flex;gap:10px;">
+                        <button type="submit" class="btn"
+                                style="background:var(--tv-gold);color:var(--tv-navy);font-weight:600;padding:8px 24px;">
+                            <i class="fa fa-save"></i> Create Event
+                        </button>
+                        <a asp-controller="Events" asp-action="Index" class="btn btn-default">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

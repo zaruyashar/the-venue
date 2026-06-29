@@ -1,0 +1,210 @@
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Dashboard";
+    var stats   = ViewBag.Stats      as THEVENUE.MVC.Models.DashboardStats;
+    var byVenue = ViewBag.ByVenue    as IEnumerable<THEVENUE.MVC.Models.RevenueByVenue>   ?? new List<THEVENUE.MVC.Models.RevenueByVenue>();
+    var byMonth = ViewBag.ByMonth    as IEnumerable<THEVENUE.MVC.Models.ReservationsByMonth> ?? new List<THEVENUE.MVC.Models.ReservationsByMonth>();
+    var byType  = ViewBag.ByEventType as IEnumerable<THEVENUE.MVC.Models.EventTypeBreakdown> ?? new List<THEVENUE.MVC.Models.EventTypeBreakdown>();
+}
+
+<!-- ===================== KPI CARDS ===================== -->
+<div class="row" style="margin-bottom:20px;">
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="panel kpi-card" style="border-top:3px solid var(--tv-gold);">
+            <div class="panel-body" style="display:flex;align-items:center;gap:15px;">
+                <div style="background:var(--tv-navy);border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;">
+                    <i class="fa fa-building" style="color:var(--tv-gold);font-size:20px;"></i>
+                </div>
+                <div>
+                    <div style="font-size:28px;font-weight:700;color:var(--tv-navy);line-height:1;">@(stats?.TotalVenues ?? 0)</div>
+                    <div style="font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;">Active Venues</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="panel kpi-card" style="border-top:3px solid #5bc0de;">
+            <div class="panel-body" style="display:flex;align-items:center;gap:15px;">
+                <div style="background:#1a3a4a;border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;">
+                    <i class="fa fa-calendar" style="color:#5bc0de;font-size:20px;"></i>
+                </div>
+                <div>
+                    <div style="font-size:28px;font-weight:700;color:var(--tv-navy);line-height:1;">@(stats?.TotalEvents ?? 0)</div>
+                    <div style="font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;">Total Events</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="panel kpi-card" style="border-top:3px solid #5cb85c;">
+            <div class="panel-body" style="display:flex;align-items:center;gap:15px;">
+                <div style="background:#1a3a1a;border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;">
+                    <i class="fa fa-ticket" style="color:#5cb85c;font-size:20px;"></i>
+                </div>
+                <div>
+                    <div style="font-size:28px;font-weight:700;color:var(--tv-navy);line-height:1;">@(stats?.TotalReservations ?? 0)</div>
+                    <div style="font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;">Reservations</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="panel kpi-card" style="border-top:3px solid var(--tv-gold);">
+            <div class="panel-body" style="display:flex;align-items:center;gap:15px;">
+                <div style="background:#3a2a0a;border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center;">
+                    <i class="fa fa-money" style="color:var(--tv-gold);font-size:20px;"></i>
+                </div>
+                <div>
+                    <div style="font-size:28px;font-weight:700;color:var(--tv-navy);line-height:1;">$@((stats?.TotalRevenue ?? 0).ToString("N0"))</div>
+                    <div style="font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;">Total Revenue</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===================== STATUS BADGES ROW ===================== -->
+<div class="row" style="margin-bottom:25px;">
+    <div class="col-md-12">
+        <div class="panel" style="border:none;background:transparent;box-shadow:none;">
+            <div style="display:flex;gap:15px;flex-wrap:wrap;">
+                <div style="background:#fff;border:1px solid #eee;border-left:4px solid #f0ad4e;padding:12px 20px;border-radius:4px;min-width:160px;">
+                    <div style="font-size:22px;font-weight:700;color:#f0ad4e;">@(stats?.PendingReservations ?? 0)</div>
+                    <div style="font-size:12px;color:#888;">Pending</div>
+                </div>
+                <div style="background:#fff;border:1px solid #eee;border-left:4px solid #5cb85c;padding:12px 20px;border-radius:4px;min-width:160px;">
+                    <div style="font-size:22px;font-weight:700;color:#5cb85c;">@(stats?.ConfirmedReservations ?? 0)</div>
+                    <div style="font-size:12px;color:#888;">Confirmed</div>
+                </div>
+                <div style="background:#fff;border:1px solid #eee;border-left:4px solid #d9534f;padding:12px 20px;border-radius:4px;min-width:160px;">
+                    <div style="font-size:22px;font-weight:700;color:#d9534f;">@(stats?.CancelledReservations ?? 0)</div>
+                    <div style="font-size:12px;color:#888;">Cancelled</div>
+                </div>
+                <div style="background:#fff;border:1px solid #eee;border-left:4px solid var(--tv-gold);padding:12px 20px;border-radius:4px;min-width:160px;">
+                    <div style="font-size:22px;font-weight:700;color:var(--tv-gold);">$@((stats?.RevenueThisMonth ?? 0).ToString("N0"))</div>
+                    <div style="font-size:12px;color:#888;">Revenue This Month</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== CHARTS ROW ===================== -->
+<div class="row">
+
+    <!-- Monthly Reservations Trend (line chart) -->
+    <div class="col-md-8 col-sm-12">
+        <div class="panel">
+            <div class="panel-heading" style="background:var(--tv-navy);color:#fff;border:none;">
+                <h4 style="margin:0;font-size:14px;letter-spacing:1px;text-transform:uppercase;">
+                    <i class="fa fa-line-chart" style="color:var(--tv-gold);margin-right:8px;"></i>
+                    Monthly Reservations & Revenue (Last 12 Months)
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div id="chart-monthly" style="height:280px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Type Donut -->
+    <div class="col-md-4 col-sm-12">
+        <div class="panel">
+            <div class="panel-heading" style="background:var(--tv-navy);color:#fff;border:none;">
+                <h4 style="margin:0;font-size:14px;letter-spacing:1px;text-transform:uppercase;">
+                    <i class="fa fa-pie-chart" style="color:var(--tv-gold);margin-right:8px;"></i>
+                    Events by Type
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div id="chart-eventtype" style="height:280px;"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Revenue by Venue bar chart -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading" style="background:var(--tv-navy);color:#fff;border:none;">
+                <h4 style="margin:0;font-size:14px;letter-spacing:1px;text-transform:uppercase;">
+                    <i class="fa fa-bar-chart" style="color:var(--tv-gold);margin-right:8px;"></i>
+                    Revenue by Venue (Confirmed Reservations)
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div id="chart-revenue" style="height:260px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+// ---- Monthly chart (c3) ----
+var monthlyLabels  = [@Html.Raw(string.Join(",", byMonth.Select(m => $"\"{m.MonthName} {m.Year}\"")))];
+var monthlyCounts  = [@Html.Raw(string.Join(",", byMonth.Select(m => m.ReservationCount)))];
+var monthlyRevenue = [@Html.Raw(string.Join(",", byMonth.Select(m => m.Revenue)))];
+
+c3.generate({
+    bindto: '#chart-monthly',
+    data: {
+        x: 'x',
+        columns: [
+            ['x'].concat(monthlyLabels),
+            ['Reservations'].concat(monthlyCounts),
+            ['Revenue ($)'].concat(monthlyRevenue)
+        ],
+        axes: { 'Revenue ($)': 'y2' },
+        types: { 'Revenue ($)': 'bar' }
+    },
+    axis: {
+        x: { type: 'category', tick: { rotate: -30, multiline: false } },
+        y:  { label: { text: 'Reservations', position: 'outer-middle' } },
+        y2: { show: true, label: { text: 'Revenue ($)', position: 'outer-middle' } }
+    },
+    color: { pattern: ['#c9a96e', '#1a1a2e'] }
+});
+
+// ---- Event Type donut (c3) ----
+var typeColumns = [@Html.Raw(string.Join(",", byType.Select(t => $"['{t.EventType}', {t.EventCount}]")))];
+c3.generate({
+    bindto: '#chart-eventtype',
+    data: {
+        columns: typeColumns.length ? typeColumns : [['No data', 1]],
+        type: 'donut'
+    },
+    donut: { title: 'Event Types' },
+    color: { pattern: ['#c9a96e','#1a1a2e','#5bc0de','#5cb85c','#f0ad4e','#d9534f'] }
+});
+
+// ---- Revenue by Venue bar (c3) ----
+var venueNames   = [@Html.Raw(string.Join(",", byVenue.Select(v => $"\"{v.VenueName}\"")))];
+var venueRevenue = [@Html.Raw(string.Join(",", byVenue.Select(v => v.TotalRevenue)))];
+
+c3.generate({
+    bindto: '#chart-revenue',
+    data: {
+        x: 'x',
+        columns: [
+            ['x'].concat(venueNames),
+            ['Revenue ($)'].concat(venueRevenue)
+        ],
+        type: 'bar'
+    },
+    axis: {
+        x: { type: 'category' },
+        y: { label: { text: 'Revenue ($)', position: 'outer-middle' } }
+    },
+    color: { pattern: ['#c9a96e'] },
+    bar: { width: { ratio: 0.5 } }
+});
+</script>
+}

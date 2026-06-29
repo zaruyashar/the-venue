@@ -1,0 +1,109 @@
+@model IEnumerable<THEVENUE.MVC.Models.Event>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Events";
+}
+
+@section DataTablesStyles {
+    <link rel="stylesheet" type="text/css" href="~/lib-admin/js/plugins/datatables/media/css/dataTables.bootstrap.css">
+}
+
+@section TopbarActions {
+    <a asp-controller="Events" asp-action="Create"
+       class="btn btn-sm" style="background:var(--tv-gold);color:var(--tv-navy);font-weight:600;">
+        <i class="fa fa-plus"></i> Add Event
+    </a>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading" style="background:var(--tv-navy);border:none;">
+                <h4 style="margin:0;color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:1px;">
+                    <i class="fa fa-calendar" style="color:var(--tv-gold);margin-right:8px;"></i>
+                    All Events
+                </h4>
+            </div>
+            <div class="panel-body">
+                <table id="events-table" class="table table-bordered table-hover" style="width:100%;">
+                    <thead>
+                        <tr style="background:var(--tv-cream);">
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Venue</th>
+                            <th>Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Attendees</th>
+                            <th>Visibility</th>
+                            <th style="width:100px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var ev in Model)
+                        {
+                            <tr>
+                                <td>@ev.EventId</td>
+                                <td><strong>@ev.Title</strong></td>
+                                <td>
+                                    <i class="fa fa-building" style="color:var(--tv-gold);"></i>
+                                    @ev.VenueName
+                                </td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(ev.EventType))
+                                    {
+                                        <span style="background:var(--tv-cream);color:var(--tv-navy);padding:2px 8px;border-radius:10px;font-size:11px;border:1px solid var(--tv-gold);">
+                                            @ev.EventType
+                                        </span>
+                                    }
+                                </td>
+                                <td>@ev.StartDate.ToString("dd MMM yyyy HH:mm")</td>
+                                <td>@ev.EndDate.ToString("dd MMM yyyy HH:mm")</td>
+                                <td>@(ev.ExpectedAttendees.HasValue ? ev.ExpectedAttendees.ToString() : "—")</td>
+                                <td>
+                                    @if (ev.IsPublic)
+                                    {
+                                        <span class="badge-confirmed">Public</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge-cancelled">Private</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-controller="Events" asp-action="Edit" asp-route-id="@ev.EventId"
+                                       class="btn btn-xs btn-info" title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <form asp-controller="Events" asp-action="Delete" asp-route-id="@ev.EventId"
+                                          method="post" style="display:inline;"
+                                          onsubmit="return confirm('Delete event \'@ev.Title\'?');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-xs btn-danger" title="Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section DataTablesScripts {
+    <script src="~/lib-admin/js/plugins/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="~/lib-admin/js/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
+    <script>
+        $(function () {
+            $('#events-table').DataTable({
+                pageLength: 15,
+                order: [[4, 'desc']],
+                dom: '<"row"<"col-sm-6"l><"col-sm-6"f>>rt<"row"<"col-sm-6"i><"col-sm-6"p>>',
+                language: { search: '<i class="fa fa-search"></i>', searchPlaceholder: 'Search events...' }
+            });
+        });
+    </script>
+}

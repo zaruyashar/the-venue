@@ -1,0 +1,150 @@
+@model THEVENUE.MVC.Models.Reservation
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Edit Reservation";
+}
+
+@section TopbarActions {
+    <a asp-controller="Reservations" asp-action="Index" class="btn btn-sm btn-default">
+        <i class="fa fa-arrow-left"></i> Back to Reservations
+    </a>
+}
+
+<div class="row">
+    <div class="col-md-9 col-md-offset-1">
+        <div class="panel">
+            <div class="panel-heading" style="background:var(--tv-navy);border:none;">
+                <h4 style="margin:0;color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:1px;">
+                    <i class="fa fa-pencil" style="color:var(--tv-gold);margin-right:8px;"></i>
+                    Edit Reservation — @Model.GuestName
+                </h4>
+            </div>
+            <div class="panel-body">
+                <form asp-controller="Reservations" asp-action="Edit" asp-route-id="@Model.ReservationId" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="ReservationId" />
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" style="display:@(ViewData.ModelState.IsValid ? "none" : "block");"></div>
+
+                    <!-- Guest info -->
+                    <h5 style="color:var(--tv-navy);font-weight:600;border-bottom:2px solid var(--tv-gold);padding-bottom:8px;margin-bottom:20px;">
+                        <i class="fa fa-user" style="color:var(--tv-gold);"></i> Guest Information
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="GuestName" class="control-label">Full Name <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="GuestName" class="form-control" />
+                                <span asp-validation-for="GuestName" class="text-danger small"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="GuestEmail" class="control-label">Email <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="GuestEmail" class="form-control" type="email" />
+                                <span asp-validation-for="GuestEmail" class="text-danger small"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="GuestPhone" class="control-label">Phone</label>
+                                <input asp-for="GuestPhone" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Booking details -->
+                    <h5 style="color:var(--tv-navy);font-weight:600;border-bottom:2px solid var(--tv-gold);padding-bottom:8px;margin:20px 0;">
+                        <i class="fa fa-calendar-check-o" style="color:var(--tv-gold);"></i> Booking Details
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="VenueId" class="control-label">Venue <span style="color:#d9534f;">*</span></label>
+                                <select asp-for="VenueId" asp-items="ViewBag.Venues" class="form-control">
+                                    <option value="">— Select a venue —</option>
+                                </select>
+                                <span asp-validation-for="VenueId" class="text-danger small"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="EventId" class="control-label">Event <span style="color:#d9534f;">*</span></label>
+                                <select asp-for="EventId" asp-items="ViewBag.Events" class="form-control">
+                                    <option value="">— Select an event —</option>
+                                </select>
+                                <span asp-validation-for="EventId" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="GuestCount" class="control-label">Guest Count <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="GuestCount" class="form-control" type="number" min="1" />
+                                <span asp-validation-for="GuestCount" class="text-danger small"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="TotalAmount" class="control-label">Total Amount ($)</label>
+                                <input asp-for="TotalAmount" class="form-control" type="number" step="0.01" min="0" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="Status" class="control-label">Status</label>
+                                <select asp-for="Status" class="form-control">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Confirmed">Confirmed</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Created</label>
+                                <input type="text" class="form-control" readonly
+                                       value="@Model.CreatedAt.ToString("dd MMM yyyy HH:mm")"
+                                       style="background:#f9f9f9;color:#888;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Notes" class="control-label">Notes</label>
+                        <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <!-- Read-only summary strip -->
+                    <div style="background:var(--tv-cream);border:1px solid #ddd;border-left:4px solid var(--tv-gold);padding:12px 18px;border-radius:4px;margin-bottom:20px;">
+                        <small style="color:#888;text-transform:uppercase;letter-spacing:1px;">Current booking summary</small>
+                        <div style="display:flex;gap:30px;margin-top:6px;">
+                            <span style="font-size:13px;">
+                                <i class="fa fa-building" style="color:var(--tv-gold);"></i>
+                                <strong>@Model.VenueName</strong>
+                            </span>
+                            <span style="font-size:13px;">
+                                <i class="fa fa-calendar" style="color:var(--tv-gold);"></i>
+                                <strong>@Model.EventTitle</strong>
+                            </span>
+                            <span style="font-size:13px;">
+                                <i class="fa fa-money" style="color:var(--tv-gold);"></i>
+                                <strong>$@Model.TotalAmount.ToString("N2")</strong>
+                            </span>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div style="display:flex;gap:10px;">
+                        <button type="submit" class="btn"
+                                style="background:var(--tv-gold);color:var(--tv-navy);font-weight:600;padding:8px 24px;">
+                            <i class="fa fa-save"></i> Save Changes
+                        </button>
+                        <a asp-controller="Reservations" asp-action="Index" class="btn btn-default">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

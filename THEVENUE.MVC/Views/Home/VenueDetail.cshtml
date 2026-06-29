@@ -1,0 +1,128 @@
+@model THEVENUE.MVC.Models.Venue
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.Name;
+    var events = ViewBag.Events as IEnumerable<THEVENUE.MVC.Models.Event> ?? new List<THEVENUE.MVC.Models.Event>();
+}
+
+<!-- Page Hero -->
+<div class="container-fluid no-padding" style="position:relative;min-height:300px;background:var(--tv-navy);display:flex;align-items:center;">
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <img src="@Model.ImageUrl" alt="@Model.Name"
+             style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.35;" />
+    }
+    <div class="container" style="position:relative;z-index:1;padding:60px 15px;">
+        <a asp-controller="Home" asp-action="Index"
+           style="color:var(--tv-gold);font-size:13px;letter-spacing:1px;text-transform:uppercase;">
+            <i class="fa fa-arrow-left"></i> Back to Venues
+        </a>
+        <h2 style="color:#fff;font-size:36px;font-weight:700;margin:15px 0 5px;">@Model.Name</h2>
+        <p style="color:var(--tv-gold);font-size:15px;">
+            <i class="fa fa-map-marker"></i> @Model.Location
+        </p>
+    </div>
+</div>
+
+<!-- Venue Details -->
+<div class="container-fluid no-padding" style="background:var(--tv-cream);">
+    <div class="section-padding"></div>
+    <div class="container">
+        <div class="row">
+
+            <!-- Left: info -->
+            <div class="col-md-8 col-sm-12">
+                <div class="panel panel-default" style="border-top:3px solid var(--tv-gold);">
+                    <div class="panel-body">
+                        <h4 style="color:var(--tv-navy);font-weight:600;margin-bottom:20px;">About This Venue</h4>
+                        <p style="color:#555;line-height:1.8;">
+                            @(string.IsNullOrEmpty(Model.Description) ? "No description available." : Model.Description)
+                        </p>
+                    </div>
+                </div>
+
+                @if (events.Any())
+                {
+                    <div class="panel panel-default" style="border-top:3px solid var(--tv-gold);margin-top:20px;">
+                        <div class="panel-heading" style="background:var(--tv-navy);">
+                            <h4 style="color:var(--tv-gold);margin:0;">Upcoming Events at @Model.Name</h4>
+                        </div>
+                        <div class="panel-body" style="padding:0;">
+                            @foreach (var ev in events)
+                            {
+                                <div style="display:flex;align-items:center;gap:20px;padding:15px 20px;border-bottom:1px solid #eee;">
+                                    <div style="background:var(--tv-navy);color:var(--tv-gold);padding:10px 14px;text-align:center;border-radius:4px;min-width:55px;">
+                                        <div style="font-size:20px;font-weight:700;line-height:1;">@ev.StartDate.Day</div>
+                                        <div style="font-size:10px;text-transform:uppercase;">@ev.StartDate.ToString("MMM")</div>
+                                    </div>
+                                    <div>
+                                        <h5 style="margin:0 0 4px;color:var(--tv-navy);font-weight:600;">@ev.Title</h5>
+                                        <p style="margin:0;font-size:12px;color:#888;">
+                                            @ev.StartDate.ToString("HH:mm") – @ev.EndDate.ToString("HH:mm")
+                                            @if (!string.IsNullOrEmpty(ev.EventType))
+                                            {
+                                                <span style="margin-left:10px;background:var(--tv-cream);color:var(--tv-navy);padding:2px 8px;border-radius:10px;font-size:11px;border:1px solid var(--tv-gold);">@ev.EventType</span>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Right: specs sidebar -->
+            <div class="col-md-4 col-sm-12">
+                <div class="panel panel-default" style="border-top:3px solid var(--tv-gold);">
+                    <div class="panel-heading" style="background:var(--tv-navy);">
+                        <h4 style="color:var(--tv-gold);margin:0;">Venue Specifications</h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed" style="margin:0;">
+                            <tr>
+                                <td style="color:#888;border:none;padding:10px 0;"><i class="fa fa-users" style="color:var(--tv-gold);width:20px;"></i> Capacity</td>
+                                <td style="font-weight:600;border:none;padding:10px 0;">@Model.Capacity guests</td>
+                            </tr>
+                            <tr>
+                                <td style="color:#888;border-top:1px solid #f0f0f0;padding:10px 0;"><i class="fa fa-tag" style="color:var(--tv-gold);width:20px;"></i> Price</td>
+                                <td style="font-weight:600;border-top:1px solid #f0f0f0;padding:10px 0;">$@Model.PricePerHour.ToString("N0") / hour</td>
+                            </tr>
+                            <tr>
+                                <td style="color:#888;border-top:1px solid #f0f0f0;padding:10px 0;"><i class="fa fa-map-marker" style="color:var(--tv-gold);width:20px;"></i> Location</td>
+                                <td style="font-weight:600;border-top:1px solid #f0f0f0;padding:10px 0;">@Model.Location</td>
+                            </tr>
+                            <tr>
+                                <td style="color:#888;border-top:1px solid #f0f0f0;padding:10px 0;"><i class="fa fa-check-circle" style="color:var(--tv-gold);width:20px;"></i> Status</td>
+                                <td style="border-top:1px solid #f0f0f0;padding:10px 0;">
+                                    @if (Model.IsActive)
+                                    {
+                                        <span style="color:#5cb85c;font-weight:600;">Available</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="color:#d9534f;font-weight:600;">Unavailable</span>
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Enquiry CTA -->
+                <div class="panel panel-default" style="margin-top:15px;background:var(--tv-navy);border:none;">
+                    <div class="panel-body" style="text-align:center;padding:30px 20px;">
+                        <h4 style="color:var(--tv-gold);margin-bottom:10px;">Interested in this venue?</h4>
+                        <p style="color:#ccc;font-size:13px;margin-bottom:20px;">Contact our team to check availability and get a personalised quote.</p>
+                        <a href="#contact-section"
+                           style="display:block;background:var(--tv-gold);color:var(--tv-navy);padding:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:12px;">
+                            Make an Enquiry
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="section-padding"></div>
+</div>

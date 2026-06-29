@@ -1,0 +1,93 @@
+@model THEVENUE.MVC.Models.Venue
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Edit Venue";
+}
+
+@section TopbarActions {
+    <a asp-controller="Venues" asp-action="Index" class="btn btn-sm btn-default">
+        <i class="fa fa-arrow-left"></i> Back to Venues
+    </a>
+}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel">
+            <div class="panel-heading" style="background:var(--tv-navy);border:none;">
+                <h4 style="margin:0;color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:1px;">
+                    <i class="fa fa-pencil" style="color:var(--tv-gold);margin-right:8px;"></i>
+                    Edit — @Model.Name
+                </h4>
+            </div>
+            <div class="panel-body">
+                <form asp-controller="Venues" asp-action="Edit" asp-route-id="@Model.VenueId" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="VenueId" />
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" style="display:@(ViewData.ModelState.IsValid ? "none" : "block");"></div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label">Venue Name <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger small"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Capacity" class="control-label">Capacity <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="Capacity" class="form-control" type="number" min="1" />
+                                <span asp-validation-for="Capacity" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label asp-for="Location" class="control-label">Location <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="Location" class="form-control" />
+                                <span asp-validation-for="Location" class="text-danger small"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="PricePerHour" class="control-label">Price / Hour ($) <span style="color:#d9534f;">*</span></label>
+                                <input asp-for="PricePerHour" class="form-control" type="number" step="0.01" min="0" />
+                                <span asp-validation-for="PricePerHour" class="text-danger small"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ImageUrl" class="control-label">Image URL</label>
+                        <input asp-for="ImageUrl" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="IsActive" type="checkbox" />
+                                <strong>Active</strong> — visible on the public site
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div style="display:flex;gap:10px;">
+                        <button type="submit" class="btn"
+                                style="background:var(--tv-gold);color:var(--tv-navy);font-weight:600;padding:8px 24px;">
+                            <i class="fa fa-save"></i> Save Changes
+                        </button>
+                        <a asp-controller="Venues" asp-action="Index" class="btn btn-default">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

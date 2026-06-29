@@ -13,8 +13,8 @@ public class DashboardController : Controller
         _reservationService = reservationService;
     }
 
-    [Route("")]
-    [Route("/admin")]
+    [Route("", Name = "DashboardDefault")]
+    [Route("/admin", Name = "AdminShortcut")]
     public async Task<IActionResult> Index()
     {
         var stats = await _reservationService.GetDashboardStatsAsync();

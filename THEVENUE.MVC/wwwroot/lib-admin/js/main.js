@@ -515,8 +515,10 @@ var Core = function(options) {
             }
          });
 
-         // Scroll lock for fixed content overflow
-         $('#content').scrollLock('on', 'div');
+         // Scroll lock for fixed content overflow — only when scrollable chutes are present
+         if ($('.chute-scroller').length) {
+            $('#content').scrollLock('on', 'div');
+         }
 
       }
 

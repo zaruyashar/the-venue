@@ -521,13 +521,18 @@
                 display: flex !important;
                 flex-direction: column !important;
                 min-height: 100vh !important;
+                background-color: var(--tv-cream) !important;
+            }
+
+            #main:before {
+                background: var(--tv-cream) !important;
             }
 
             #content_wrapper {
                 display: flex !important;
                 flex-direction: column !important;
                 flex: 1 0 auto !important;
-                min-height: auto !important;
+                min-height: calc(100vh - 60px) !important;
             }
 
             #content {
@@ -574,7 +579,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="fa fa-user fs18"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right w180" role="menu" style="background-color:#10101d; border:1px solid rgba(201, 169, 110, 0.2); margin-top:10px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                <ul class="dropdown-menu dropdown-menu-right" role="menu" style="background-color:#10101d; border:1px solid rgba(201, 169, 110, 0.2); margin-top:10px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); min-width: 160px; white-space: nowrap;">
                     <li style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <a href="#" style="color:#fff; padding:12px 18px; display:block; text-decoration:none; font-family:'Outfit', sans-serif; font-size:13px; font-weight:500;">
                             <span class="fa fa-cog" style="color:var(--tv-gold); margin-right:10px; width:15px; text-align:center;"></span>Settings
@@ -589,7 +594,7 @@
             </li>
             
             <li>
-                <a asp-controller="Home" asp-action="Index" title="View Public Site">
+                <a asp-controller="Home" asp-action="Index" title="View Public Site" target="_blank" rel="noopener noreferrer">
                     <span class="fa fa-external-link fs18"></span>
                 </a>
             </li>

@@ -93,7 +93,9 @@
     <script>
         $(function () {
             $('#venues-table').DataTable({
-                pageLength: 15,
+                pageLength: 5,
+                lengthMenu: [5, 10, 15, 20],
+                stateSave: true,
                 order: [[0, 'desc']],
                 dom: '<"row"<"col-sm-6"l><"col-sm-6"f>>rt<"row"<"col-sm-6"i><"col-sm-6"p>>',
                 language: { search: '<i class="fa fa-search"></i>', searchPlaceholder: 'Search venues...' }

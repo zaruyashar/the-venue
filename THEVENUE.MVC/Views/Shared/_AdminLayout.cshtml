@@ -37,7 +37,7 @@
             --tv-text-muted: #8e8ea0;
         }
         
-        /* Modernized Topbar */
+        /* Modernized Topbar - Expanded all the way to the left */
         header.navbar.navbar-fixed-top {
             background: var(--tv-navy) !important;
             border-bottom: 1px solid rgba(201, 169, 110, 0.15) !important;
@@ -45,21 +45,140 @@
             backdrop-filter: blur(8px);
             height: 60px !important;
             padding-right: 25px !important;
-            padding-left: 15px !important;
+            padding-left: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            margin: 0 !important;
+            z-index: 1050 !important;
         }
-        
-        header.navbar .nav > li > a {
-            color: rgba(255, 255, 255, 0.85) !important;
-            font-size: 14px;
-            font-weight: 500;
+
+        /* Sidebar Toggle Button alignment */
+        .navbar-left, .navbar-left li {
+            height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+        .navbar-left .navbar-btn {
+            margin: 0 !important;
+            padding: 0 10px !important;
+            height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+        #sidebar_left_toggle {
+            height: 40px !important;
+            width: 40px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: transparent !important;
+            border: none !important;
+            color: #fff !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-radius: 50% !important;
             transition: all 0.3s ease;
-            line-height: 60px !important;
-            padding: 0 16px !important;
         }
-        
-        header.navbar .nav > li > a:hover {
+        #sidebar_left_toggle:hover {
+            background-color: rgba(255, 255, 255, 0.08) !important;
             color: var(--tv-gold) !important;
-            background: rgba(255, 255, 255, 0.03) !important;
+        }
+
+        .navbar-branding {
+            background-color: var(--tv-navy) !important;
+            width: 230px !important;
+            height: 60px !important;
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            padding-left: 20px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            transition: all 0.3s ease !important;
+            overflow: hidden !important;
+            z-index: 1060 !important;
+        }
+
+        body.sb-l-m .navbar-branding {
+            width: 60px !important;
+            padding-left: 0 !important;
+            justify-content: center !important;
+        }
+
+        body.sb-l-m .navbar-branding .brand-text {
+            display: none !important;
+        }
+
+        body.sb-l-m .navbar-branding .brand-icon {
+            margin: 0 !important;
+            font-size: 22px !important;
+        }
+
+        .navbar-left {
+            margin-left: 230px !important;
+            transition: all 0.3s ease !important;
+            height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        body.sb-l-m .navbar-left {
+            margin-left: 60px !important;
+        }
+
+        .navbar-right {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            height: 60px !important;
+            margin: 0 !important;
+            padding-right: 25px !important;
+            gap: 15px !important;
+            position: absolute !important;
+            right: 0 !important;
+            top: 0 !important;
+        }
+
+        .navbar-right li {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 100% !important;
+            margin: 0 !important;
+        }
+
+        .navbar-right li > a {
+            width: 40px !important;
+            height: 40px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-radius: 50% !important;
+            color: var(--tv-gold) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .navbar-right li > a:hover {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .navbar-right li > a span {
+            color: var(--tv-gold) !important;
+            font-size: 18px !important;
+        }
+        /* Prevent user dropdown icon from being overridden by chevron caret */
+        .navbar-right .navbar-profile-custom a.dropdown-toggle span.fa-user::before,
+        .navbar-right .navbar-profile-custom a.dropdown-toggle span.fa-user:before {
+            content: "\f007" !important;
+        }
+        .navbar .nav > li.dropdown.navbar-profile-custom > a.dropdown-toggle > .fa {
+            font-size: 18px !important;
+            position: static !important;
+            margin: 0 !important;
+            color: var(--tv-gold) !important;
         }
         
         .navbar-brand-custom {
@@ -86,19 +205,80 @@
             box-shadow: 4px 0 30px rgba(0, 0, 0, 0.05);
             top: 60px !important;
         }
-        
-        .sidebar-header {
-            background: var(--tv-navy) !important;
-            border-bottom: 1px solid rgba(201, 169, 110, 0.08) !important;
-            padding: 20px 15px !important;
+
+        /* Collapsed Sidebar Menu Icons & highlights alignment - Centered between screen edge and sidebar edge */
+        body.sb-l-m #sidebar_left,
+        body.sb-l-m .sidebar-left-content,
+        body.sb-l-m .sidebar-menu {
+            width: 60px !important;
+            padding: 0 !important;
+            margin: 0 !important;
         }
-        
-        .logo-slogan div {
+        body.sb-l-m .sidebar-menu > li {
+            width: 60px !important;
+            padding: 0 !important;
+            margin: 0 auto 4px auto !important;
+            list-style: none !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+        body.sb-l-m .sidebar-menu > li > a {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 60px !important;
+            height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: transparent !important;
+        }
+        body.sb-l-m .sidebar-menu > li > a .sb-menu-icon {
+            position: static !important;
+            left: auto !important;
+            right: auto !important;
+            top: auto !important;
+            margin: 0 !important;
+            font-size: 18px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 8px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        /* Active Item highlight rules in collapsed sidebar */
+        body.sb-l-m .sidebar-menu li.active > a {
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        body.sb-l-m .sidebar-menu li.active > a .sb-menu-icon {
+            background: var(--tv-gold) !important;
+            color: var(--tv-navy) !important;
+            box-shadow: 0 4px 12px rgba(201, 169, 110, 0.35) !important;
+        }
+
+        /* Top Left Hamburger Button Override */
+        .navbar-left .navbar-btn,
+        .navbar-left #sidebar_left_toggle,
+        .navbar-left #sidebar-left-toggle {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            color: #fff !important;
+        }
+        .navbar-left #sidebar_left_toggle:hover,
+        .navbar-left #sidebar-left-toggle:hover {
             color: var(--tv-gold) !important;
-            font-size: 20px !important;
-            letter-spacing: 4px !important;
-            font-weight: 700 !important;
-            font-family: 'Outfit', sans-serif;
+        }
+
+        /* User Dropdown Menu Hover Styles */
+        .dropdown-menu > li > a:hover {
+            background-color: rgba(201, 169, 110, 0.1) !important;
+            color: var(--tv-gold) !important;
         }
         
         .sidebar-menu {
@@ -303,53 +483,57 @@
 
     <!-- ===================== TOP NAVBAR ===================== -->
     <header class="navbar navbar-fixed-top">
+    
+        <div class="navbar-branding">
+            <a asp-controller="Dashboard" asp-action="Index" class="navbar-brand-custom" style="display: flex; align-items: center; gap: 10px; font-family:'Outfit', sans-serif; font-size:18px; letter-spacing:2px; font-weight:700; text-decoration:none;">
+                <span class="fa fa-star brand-icon"></span>
+                <span class="brand-text"><span style="color:#fff; font-weight:300;">THE</span><span style="color:var(--tv-gold); font-weight:700;">VENUE</span></span>
+            </a>
+        </div>
+
         <ul class="nav navbar-nav navbar-left">
-            <!-- Sidebar toggle -->
             <li>
                 <div class="navbar-btn btn-group phn">
-                    <button class="btn-hover-effects btn sidebar-toggle" id="sidebar-left-toggle">
+                    <button class="btn-hover-effects btn sidebar-toggle" id="sidebar_left_toggle">
                         <span class="fa fa-bars fs18"></span>
                     </button>
                 </div>
             </li>
         </ul>
 
-        <!-- Brand centre -->
-        <div class="navbar-header" style="position:absolute;left:50%;transform:translateX(-50%);">
-            <a asp-controller="Dashboard" asp-action="Index" class="navbar-brand-custom">
-                THEVENUE
-            </a>
-        </div>
-
         <ul class="nav navbar-nav navbar-right">
-            <!-- Messages Link (red dot indicator) -->
+            
             <li>
-                <a asp-controller="Contacts" asp-action="Index" class="topbar-msg-btn" title="Inbox" style="line-height:60px; color:#fff; display: flex; align-items: center; position: relative;">
-                    <span class="fa fa-envelope fs18" style="color:var(--tv-gold);"></span>
+                <a asp-controller="Contacts" asp-action="Index" class="topbar-msg-btn" title="Inbox">
+                    <span class="fa fa-envelope fs18"></span>
                     <span class="msg-badge" id="unread-dot"></span>
                 </a>
             </li>
-            <!-- Public site link -->
-            <li>
-                <a asp-controller="Home" asp-action="Index"
-                   class="btn-hover-effects btn" title="View Public Site" style="line-height:60px;color:#fff;">
-                    <span class="fa fa-external-link"></span>
-                    <span class="hidden-xs hidden-sm" style="margin-left:5px;">Public Site</span>
+            
+            <li class="dropdown navbar-profile-custom">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="fa fa-user fs18"></span>
                 </a>
-            </li>
-            <!-- Admin user placeholder (Identity will populate this later) -->
-            <li class="dropdown dropdown-fuse navbar-user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="line-height: 60px;">
-                    <span class="fa fa-user-circle fs20" style="color:var(--tv-gold); vertical-align: middle;"></span>
-                    <span class="hidden-xs" style="margin-left:5px;color:#fff; vertical-align: middle;">Admin</span>
-                    <span class="fa fa-caret-down hidden-xs" style="color:#fff; vertical-align: middle;"></span>
-                </a>
-                <ul class="dropdown-menu list-group keep-dropdown w200" role="menu">
-                    <li class="dropdown-footer text-center">
-                        <a href="#" class="btn btn-warning btn-sm">Logout</a>
+                <ul class="dropdown-menu dropdown-menu-right w180" role="menu" style="background-color:#10101d; border:1px solid rgba(201, 169, 110, 0.2); margin-top:10px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                    <li style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <a href="#" style="color:#fff; padding:12px 18px; display:block; text-decoration:none; font-family:'Outfit', sans-serif; font-size:13px; font-weight:500;">
+                            <span class="fa fa-cog" style="color:var(--tv-gold); margin-right:10px; width:15px; text-align:center;"></span>Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="color:#fff; padding:12px 18px; display:block; text-decoration:none; font-family:'Outfit', sans-serif; font-size:13px; font-weight:500;">
+                            <span class="fa fa-sign-out" style="color:var(--tv-gold); margin-right:10px; width:15px; text-align:center;"></span>Logout
+                        </a>
                     </li>
                 </ul>
             </li>
+            
+            <li>
+                <a asp-controller="Home" asp-action="Index" title="View Public Site">
+                    <span class="fa fa-external-link fs18"></span>
+                </a>
+            </li>
+            
         </ul>
     </header>
     <!-- ===================== /TOP NAVBAR ===================== -->
@@ -357,16 +541,6 @@
     <!-- ===================== SIDEBAR ===================== -->
     <aside id="sidebar_left" class="nano affix">
         <div class="sidebar-left-content nano-content">
-
-            <!-- Logo -->
-            <header class="sidebar-header">
-                <div class="sidebar-widget logo-widget" style="padding:20px 15px;">
-                    <div class="logo-slogan">
-                        <div>THEVENUE</div>
-                        <small style="color:#888;font-size:10px;letter-spacing:1px;">ADMIN PANEL</small>
-                    </div>
-                </div>
-            </header>
 
             <!-- Nav -->
             <ul class="nav sidebar-menu">
@@ -376,8 +550,8 @@
                 <!-- Dashboard -->
                 <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Dashboard" ? "active" : "")">
                     <a asp-controller="Dashboard" asp-action="Index">
-                        <span class="sidebar-title">Dashboard</span>
                         <span class="sb-menu-icon fa fa-home"></span>
+                        <span class="sidebar-title">Dashboard</span>
                     </a>
                 </li>
 
@@ -386,32 +560,32 @@
                 <!-- Venues -->
                 <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Venues" ? "active" : "")">
                     <a asp-controller="Venues" asp-action="Index">
-                        <span class="sidebar-title">Venues</span>
                         <span class="sb-menu-icon fa fa-building"></span>
+                        <span class="sidebar-title">Venues</span>
                     </a>
                 </li>
 
                 <!-- Events -->
                 <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Events" ? "active" : "")">
                     <a asp-controller="Events" asp-action="Index">
-                        <span class="sidebar-title">Events</span>
                         <span class="sb-menu-icon fa fa-calendar"></span>
+                        <span class="sidebar-title">Events</span>
                     </a>
                 </li>
 
                 <!-- Reservations -->
                 <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Reservations" ? "active" : "")">
                     <a asp-controller="Reservations" asp-action="Index">
-                        <span class="sidebar-title">Reservations</span>
                         <span class="sb-menu-icon fa fa-ticket"></span>
+                        <span class="sidebar-title">Reservations</span>
                     </a>
                 </li>
 
                 <!-- Messages -->
                 <li class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Contacts" ? "active" : "")">
                     <a asp-controller="Contacts" asp-action="Index">
-                        <span class="sidebar-title">Messages</span>
                         <span class="sb-menu-icon fa fa-envelope"></span>
+                        <span class="sidebar-title">Messages</span>
                         <span class="badge" id="sidebar-msg-badge" style="display:none;background:#d9534f;color:#fff;font-weight:700;padding:3px 8px;border-radius:10px;margin-left:auto;font-size:10px;">0</span>
                     </a>
                 </li>
@@ -486,9 +660,7 @@
         // Init theme core features (scrollbars, side menu, etc.)
         Core.init();
 
-        $('#sidebar-left-toggle').on('click', function () {
-            $('body').toggleClass('sb-l-o').toggleClass('sb-l-c');
-        });
+
         // Auto-dismiss toasts after 4s
         setTimeout(function () { $('.tv-toast').fadeOut(400); }, 4000);
 

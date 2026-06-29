@@ -1,8 +1,8 @@
-﻿INSERT INTO Venues (Name, Description, Capacity, PricePerHour, Location, ImageUrl, IsActive)
+INSERT INTO Venues (Name, Description, Capacity, PricePerHour, Location, ImageUrl, IsActive)
 VALUES
-('The Grand Hall',    'A majestic ballroom with crystal chandeliers and marble floors.',  400, 850.00, 'İstanbul, Beşiktaş',  '/images/venues/grand-hall.jpg',    1),
-('The Garden Terrace','An open-air rooftop terrace with panoramic Bosphorus views.',      150, 450.00, 'İstanbul, Üsküdar',   '/images/venues/garden-terrace.jpg', 1),
-('The Studio Loft',  'A minimalist industrial space perfect for creative events.',        80,  300.00, 'İstanbul, Karaköy',   '/images/venues/studio-loft.jpg',    1);
+('The Grand Hall',    'A majestic ballroom with crystal chandeliers and marble floors.',  400, 850.00, 'İstanbul, Beşiktaş',  'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80',    1),
+('The Garden Terrace','An open-air rooftop terrace with panoramic Bosphorus views.',      150, 450.00, 'İstanbul, Üsküdar',   'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80', 1),
+('The Studio Loft',  'A minimalist industrial space perfect for creative events.',        80,  300.00, 'İstanbul, Karaköy',   'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',    1);
 
 INSERT INTO Events (VenueId, Title, Description, EventType, StartDate, EndDate, ExpectedAttendees, IsPublic)
 VALUES

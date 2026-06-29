@@ -19,19 +19,207 @@
     <link rel="stylesheet" type="text/css" href="~/lib-public/style.css">
     <link rel="stylesheet" type="text/css" href="~/lib-public/css/shortcode.css">
 
-    <!-- THEVENUE overrides -->
+    <!-- THEVENUE overrides: Elegant & Modern Redesign -->
     <style>
-        /* Brand colour overrides — gold accent on Mitri's dark palette */
+        @@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        /* Brand colours */
         :root {
             --tv-gold:   #c9a96e;
-            --tv-navy:   #1a1a2e;
+            --tv-gold-hover: #dfbe84;
+            --tv-navy:   #10101d; /* Rich deep navy */
             --tv-cream:  #f5f0e8;
         }
-        .top-header { background: var(--tv-navy) !important; }
-        .menu-block  { background: var(--tv-navy) !important; }
-        .logo-block h3, .navbar-brand span { color: var(--tv-gold) !important; }
-        .menubar > li.active > a,
-        .menubar > li > a:hover { color: var(--tv-gold) !important; }
+        
+        /* Top Header Strip */
+        .top-header { 
+            background: var(--tv-navy) !important; 
+            border-bottom: 1px solid rgba(201, 169, 110, 0.15) !important;
+            padding: 10px 0 !important;
+        }
+        
+        .top-header .social ul li a i {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        
+        .top-header .social ul li a:hover i {
+            color: var(--tv-gold) !important;
+            transform: scale(1.1);
+        }
+        
+        .top-header .register a {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        .top-header .register a:hover {
+            color: var(--tv-gold) !important;
+        }
+        
+        /* Elegant Logo Branding - Top Header */
+        .top-header .logo-block h3 {
+            margin: 0 !important;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px !important;
+            letter-spacing: 5px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+        }
+        
+        /* Footer Logo Branding - Smaller & Block display to prevent overlap */
+        .footer-about .logo-block h3 {
+            margin: 0 0 15px 0 !important;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px !important;
+            letter-spacing: 4px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            display: block !important;
+        }
+        
+        .logo-block h3 .logo-the {
+            font-weight: 300 !important;
+            color: #ffffff !important;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-block h3 .logo-venue {
+            font-weight: 700 !important;
+            color: var(--tv-gold) !important;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-block a:hover h3 .logo-venue {
+            color: var(--tv-gold-hover) !important;
+            text-shadow: 0 0 10px rgba(201, 169, 110, 0.2);
+        }
+
+        /* Menu block Navbar */
+        .menu-block { 
+            background: var(--tv-navy) !important; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .navbar.ow-navigation {
+            border: none !important;
+            margin-bottom: 0 !important;
+            background: transparent !important;
+        }
+        
+        .navbar-brand span {
+            color: var(--tv-gold) !important;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+        
+        /* Navigation Links - Improved Readability */
+        .menubar > li > a {
+            color: rgba(255, 255, 255, 0.95) !important;
+            font-family: 'Montserrat', sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 13px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 2px !important;
+            transition: all 0.3s ease !important;
+            padding: 20px 22px !important;
+            position: relative;
+        }
+        
+        .menubar > li > a::after {
+            content: '';
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--tv-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .menubar > li > a:hover {
+            color: var(--tv-gold) !important;
+        }
+        
+        .menubar > li > a:hover::after,
+        .menubar > li.active > a::after {
+            width: 30px;
+        }
+        
+        .menubar > li.active > a {
+            color: var(--tv-gold) !important;
+            background: transparent !important;
+        }
+        
+        /* Booking section overrides to fix bleeding & background text */
+        .hurryup-booking-section {
+            background-image: url("https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1920&q=80") !important;
+            min-height: 520px !important;
+            max-height: none !important;
+            height: auto !important;
+            padding: 80px 0 !important;
+        }
+        
+        .hurryup-block {
+            background-color: rgba(201, 169, 110, 0.92) !important; /* Rich gold overlay */
+            border-radius: 8px 0 0 8px;
+            box-shadow: -5px 5px 25px rgba(0,0,0,0.15);
+        }
+        
+        .booking-form-block {
+            background-color: rgba(16, 16, 29, 0.95) !important; /* Deep navy overlay */
+            border-radius: 0 8px 8px 0;
+            box-shadow: 5px 5px 25px rgba(0,0,0,0.15);
+            border-left: 1px solid rgba(201, 169, 110, 0.2);
+        }
+        
+        .booking-form-block h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--tv-gold) !important;
+        }
+        
+        .booking-form-block .form-control {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #ffffff !important;
+            border-radius: 4px !important;
+            text-transform: none !important;
+        }
+        
+        .booking-form-block .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.55) !important;
+        }
+        
+        .booking-form-block .form-control:focus {
+            border-color: var(--tv-gold) !important;
+            background: rgba(255, 255, 255, 0.12) !important;
+        }
+        
+        .booking-form-block .btn {
+            border-radius: 4px !important;
+            background-color: var(--tv-gold) !important;
+            color: var(--tv-navy) !important;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700 !important;
+            transition: all 0.3s ease !important;
+        }
+        .booking-form-block .btn:hover {
+            background-color: var(--tv-gold-hover) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4);
+        }
+        
         footer.footer-main { background: var(--tv-navy) !important; }
     </style>
 
@@ -66,7 +254,7 @@
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12 logo-block">
                         <a asp-controller="Home" asp-action="Index" title="THEVENUE">
-                            <h3 style="color:var(--tv-gold);font-size:22px;letter-spacing:3px;">THEVENUE</h3>
+                            <h3><span class="logo-the">THE</span><span class="logo-venue">VENUE</span></h3>
                         </a>
                     </div>
                 </div>
@@ -88,7 +276,7 @@
                                 <span class="icon-bar"></span>
                             </button>
                             <a asp-controller="Home" asp-action="Index" class="navbar-brand">
-                                <span>THEVENUE</span>
+                                <span><span style="font-weight:300;color:#fff;">THE</span><span style="font-weight:700;color:var(--tv-gold);">VENUE</span></span>
                             </a>
                         </div>
                         <div class="navbar-collapse collapse" id="main-navbar">
@@ -125,7 +313,7 @@
 
             <div class="footer-about">
                 <div class="logo-block">
-                    <h3 style="color:var(--tv-gold);font-size:24px;letter-spacing:4px;">THEVENUE</h3>
+                    <h3><span class="logo-the">THE</span><span class="logo-venue">VENUE</span></h3>
                 </div>
                 <div class="footer-about-content">
                     <h3 class="block-title">About THEVENUE</h3>

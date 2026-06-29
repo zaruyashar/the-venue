@@ -147,64 +147,66 @@
 </div>
 
 @section Scripts {
-<script>
-// ---- Monthly chart (c3) ----
-var monthlyLabels  = [@Html.Raw(string.Join(",", byMonth.Select(m => $"\"{m.MonthName} {m.Year}\"")))];
-var monthlyCounts  = [@Html.Raw(string.Join(",", byMonth.Select(m => m.ReservationCount)))];
-var monthlyRevenue = [@Html.Raw(string.Join(",", byMonth.Select(m => m.Revenue)))];
+    <script>
+        var monthlyLabels  = [@Html.Raw(string.Join(",", byMonth.Select(m => $"\"{m.MonthName} {m.Year}\"")))];
+        var monthlyCounts  = [@Html.Raw(string.Join(",", byMonth.Select(m => m.ReservationCount)))];
+        var monthlyRevenue = [@Html.Raw(string.Join(",", byMonth.Select(m => m.Revenue)))];
 
-c3.generate({
-    bindto: '#chart-monthly',
-    data: {
-        x: 'x',
-        columns: [
-            ['x'].concat(monthlyLabels),
-            ['Reservations'].concat(monthlyCounts),
-            ['Revenue ($)'].concat(monthlyRevenue)
-        ],
-        axes: { 'Revenue ($)': 'y2' },
-        types: { 'Revenue ($)': 'bar' }
-    },
-    axis: {
-        x: { type: 'category', tick: { rotate: -30, multiline: false } },
-        y:  { label: { text: 'Reservations', position: 'outer-middle' } },
-        y2: { show: true, label: { text: 'Revenue ($)', position: 'outer-middle' } }
-    },
-    color: { pattern: ['#c9a96e', '#1a1a2e'] }
-});
+        c3.generate({
+            bindto: '#chart-monthly',
+            data: {
+                x: 'x',
+                columns: [
+                    ['x'].concat(monthlyLabels),
+                    ['Reservations'].concat(monthlyCounts),
+                    ['Revenue ($)'].concat(monthlyRevenue)
+                ],
+                axes: {
+                    'Revenue ($)': 'y2'
+                },
+                types: {
+                    'Reservations': 'bar',
+                    'Revenue ($)': 'spline'
+                }
+            },
+            axis: {
+                x: { type: 'category', tick: { rotate: -30, multiline: false } },
+                y:  { label: { text: 'Reservations', position: 'outer-middle' } },
+                y2: { show: true, label: { text: 'Revenue ($)', position: 'outer-middle' } }
+            },
+            color: { pattern: ['#c9a96e', '#1a1a2e'] }
+        });
 
-// ---- Event Type donut (c3) ----
-var typeColumns = [@Html.Raw(string.Join(",", byType.Select(t => $"['{t.EventType}', {t.EventCount}]")))];
-c3.generate({
-    bindto: '#chart-eventtype',
-    data: {
-        columns: typeColumns.length ? typeColumns : [['No data', 1]],
-        type: 'donut'
-    },
-    donut: { title: 'Event Types' },
-    color: { pattern: ['#c9a96e','#1a1a2e','#5bc0de','#5cb85c','#f0ad4e','#d9534f'] }
-});
+        var typeColumns = [@Html.Raw(string.Join(",", byType.Select(t => $"['{t.EventType}', {t.EventCount}]")))];
+        c3.generate({
+            bindto: '#chart-eventtype',
+            data: {
+                columns: typeColumns.length ? typeColumns : [['No data', 1]],
+                type: 'donut'
+            },
+            donut: { title: 'Event Types' },
+            color: { pattern: ['#c9a96e','#1a1a2e','#5bc0de','#5cb85c','#f0ad4e','#d9534f'] }
+        });
 
-// ---- Revenue by Venue bar (c3) ----
-var venueNames   = [@Html.Raw(string.Join(",", byVenue.Select(v => $"\"{v.VenueName}\"")))];
-var venueRevenue = [@Html.Raw(string.Join(",", byVenue.Select(v => v.TotalRevenue)))];
+        var venueNames   = [@Html.Raw(string.Join(",", byVenue.Select(v => $"\"{v.VenueName}\"")))];
+        var venueRevenue = [@Html.Raw(string.Join(",", byVenue.Select(v => v.TotalRevenue)))];
 
-c3.generate({
-    bindto: '#chart-revenue',
-    data: {
-        x: 'x',
-        columns: [
-            ['x'].concat(venueNames),
-            ['Revenue ($)'].concat(venueRevenue)
-        ],
-        type: 'bar'
-    },
-    axis: {
-        x: { type: 'category' },
-        y: { label: { text: 'Revenue ($)', position: 'outer-middle' } }
-    },
-    color: { pattern: ['#c9a96e'] },
-    bar: { width: { ratio: 0.5 } }
-});
-</script>
+        c3.generate({
+            bindto: '#chart-revenue',
+            data: {
+                x: 'x',
+                columns: [
+                    ['x'].concat(venueNames),
+                    ['Revenue ($)'].concat(venueRevenue)
+                ],
+                type: 'bar'
+            },
+            axis: {
+                x: { type: 'category' },
+                y: { label: { text: 'Revenue ($)', position: 'outer-middle' } }
+            },
+            color: { pattern: ['#c9a96e'] },
+            bar: { width: { ratio: 0.5 } }
+        });
+    </script>
 }

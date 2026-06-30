@@ -208,6 +208,10 @@
                 border-right: 1px solid rgba(201, 169, 110, 0.08) !important;
                 box-shadow: 4px 0 30px rgba(0, 0, 0, 0.05);
                 top: 60px !important;
+                position: fixed !important;
+                height: calc(100vh - 60px) !important;
+                bottom: 0 !important;
+                z-index: 1040 !important;
             }
 
             body.sb-l-m #sidebar_left,
@@ -531,8 +535,17 @@
             #content_wrapper {
                 display: flex !important;
                 flex-direction: column !important;
-                flex: 1 0 auto !important;
-                min-height: calc(100vh - 60px) !important;
+                flex: 1 1 auto !important;
+                min-height: 100vh !important;
+                padding-top: 60px !important;
+                margin-left: 230px !important;
+                transition: margin 0.3s ease !important;
+                width: auto !important;
+                overflow-x: hidden !important;
+            }
+
+            body.sb-l-m #content_wrapper {
+                margin-left: 60px !important;
             }
 
             #content {

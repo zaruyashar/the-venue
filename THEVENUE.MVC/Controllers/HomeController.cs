@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using THEVENUE.MVC.Models;
 using THEVENUE.MVC.Services;
 
@@ -40,6 +41,7 @@ public class HomeController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [EnableRateLimiting("ContactFormPolicy")]
     public async Task<IActionResult> SubmitContact(string name, string email, string phone, string message)
     {
         if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(message))

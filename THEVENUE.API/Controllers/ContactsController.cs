@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using THEVENUE.API.DTOs.Contact;
 using THEVENUE.API.Models;
 using THEVENUE.API.Repositories;
@@ -32,6 +33,7 @@ public class ContactsController : ControllerBase
     }
 
     [HttpPost]
+    [EnableRateLimiting("ContactApiPolicy")]
     public async Task<IActionResult> Create([FromBody] ContactCreateDto dto)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);

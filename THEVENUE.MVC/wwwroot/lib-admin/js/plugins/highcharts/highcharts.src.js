@@ -38,7 +38,7 @@ var UNDEFINED,
 	isWebKit = /AppleWebKit/.test(userAgent),
 	isFirefox = /Firefox/.test(userAgent),
 	isTouchDevice = /(Mobile|Android|Windows Phone)/.test(userAgent),
-	SVG_NS = 'https://www.w3.org/2000/svg',
+	SVG_NS = 'http://www.w3.org/2000/svg',
 	hasSVG = !!doc.createElementNS && !!doc.createElementNS(SVG_NS, 'svg').createSVGRect,
 	hasBidiBug = isFirefox && parseInt(userAgent.split('Firefox/')[1], 10) < 4, // issue #38
 	useCanVG = !hasSVG && !isIE && !!doc.createElement('canvas').getContext,

@@ -23,7 +23,7 @@ npm: `npm install malihu-custom-scrollbar-plugin`
 
 `$(selector).mCustomScrollbar();` 
 
-###### Using with [Browserify](http://browserify.org/)
+###### Using with [Browserify](https://browserify.org/)
 
     var $ = require('jquery');
     require('malihu-custom-scrollbar-plugin')($);
@@ -31,7 +31,7 @@ npm: `npm install malihu-custom-scrollbar-plugin`
 
 #### For more information 
 
-* [Plugin homepage and documentation](http://manos.malihu.gr/jquery-custom-content-scroller) 
+* [Plugin homepage and documentation](https://manos.malihu.gr/jquery-custom-content-scroller) 
 
 Requirements
 -------------------------
@@ -55,7 +55,7 @@ License
 
 MIT License (MIT)
 
-http://opensource.org/licenses/MIT
+https://opensource.org/licenses/MIT
 
 Donate 
 -------------------------

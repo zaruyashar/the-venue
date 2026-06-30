@@ -6,221 +6,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewData["Title"] - THEVENUE</title>
 
-    <!-- Mitri: Bootstrap 3 + base libs -->
     <link rel="stylesheet" type="text/css" href="~/lib-public/libraries/lib.css">
     <link rel="stylesheet" type="text/css" href="~/lib-public/libraries/Stroke-Gap-Icon/stroke-gap-icon.css">
 
-    <!-- Mitri: plugins, nav, slider -->
     <link rel="stylesheet" type="text/css" href="~/lib-public/css/plugins.css">
     <link rel="stylesheet" type="text/css" href="~/lib-public/css/navigation-menu.css">
     <link rel="stylesheet" type="text/css" href="~/lib-public/libraries/lightslider-master/lightslider.css">
 
-    <!-- Mitri: theme -->
     <link rel="stylesheet" type="text/css" href="~/lib-public/style.css">
     <link rel="stylesheet" type="text/css" href="~/lib-public/css/shortcode.css">
 
-    <!-- THEVENUE overrides: Elegant & Modern Redesign -->
     <style>
-        @@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
-        
-        body {
-            font-family: 'Montserrat', sans-serif !important;
-        }
+            @@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
 
-        /* Brand colours */
-        :root {
-            --tv-gold:   #c9a96e;
-            --tv-gold-hover: #dfbe84;
-            --tv-navy:   #10101d; /* Rich deep navy */
-            --tv-cream:  #f5f0e8;
-        }
-        
-        /* Top Header Strip */
-        .top-header { 
-            background: var(--tv-navy) !important; 
-            border-bottom: 1px solid rgba(201, 169, 110, 0.15) !important;
-            padding: 10px 0 !important;
-        }
-        
-        .top-header .social ul li a i {
-            color: #fff !important;
-            transition: all 0.3s ease;
-        }
-        
-        .top-header .social ul li a:hover i {
-            color: var(--tv-gold) !important;
-            transform: scale(1.1);
-        }
-        
-        .top-header .register a {
-            color: rgba(255, 255, 255, 0.8) !important;
-            font-weight: 500;
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-        .top-header .register a:hover {
-            color: var(--tv-gold) !important;
-        }
-        
-        /* Elegant Logo Branding - Top Header */
-        .top-header .logo-block h3 {
-            margin: 0 !important;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 32px !important;
-            letter-spacing: 5px !important;
-            font-weight: 700 !important;
-            text-transform: uppercase;
-        }
-        
-        /* Footer Logo Branding - Smaller & Block display to prevent overlap */
-        .footer-about .logo-block h3 {
-            margin: 0 0 15px 0 !important;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 22px !important;
-            letter-spacing: 4px !important;
-            font-weight: 700 !important;
-            text-transform: uppercase;
-            display: block !important;
-        }
-        
-        .logo-block h3 .logo-the {
-            font-weight: 300 !important;
-            color: #ffffff !important;
-            transition: all 0.3s ease;
-        }
-        
-        .logo-block h3 .logo-venue {
-            font-weight: 700 !important;
-            color: var(--tv-gold) !important;
-            transition: all 0.3s ease;
-        }
-        
-        .logo-block a:hover h3 .logo-venue {
-            color: var(--tv-gold-hover) !important;
-            text-shadow: 0 0 10px rgba(201, 169, 110, 0.2);
-        }
+            body {
+                font-family: 'Montserrat', sans-serif !important;
+            }
 
-        /* Menu block Navbar */
-        .menu-block { 
-            background: var(--tv-navy) !important; 
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .navbar.ow-navigation {
-            border: none !important;
-            margin-bottom: 0 !important;
-            background: transparent !important;
-        }
-        
-        .navbar-brand span {
-            color: var(--tv-gold) !important;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            letter-spacing: 3px;
-        }
-        
-        /* Navigation Links - Improved Readability */
-        .menubar > li > a {
-            color: rgba(255, 255, 255, 0.95) !important;
-            font-family: 'Montserrat', sans-serif !important;
-            font-weight: 600 !important;
-            font-size: 13px !important;
-            text-transform: uppercase !important;
-            letter-spacing: 2px !important;
-            transition: all 0.3s ease !important;
-            padding: 20px 22px !important;
-            position: relative;
-        }
-        
-        .menubar > li > a::after {
-            content: '';
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--tv-gold);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        
-        .menubar > li > a:hover {
-            color: var(--tv-gold) !important;
-        }
-        
-        .menubar > li > a:hover::after,
-        .menubar > li.active > a::after {
-            width: 30px;
-        }
-        
-        .menubar > li.active > a {
-            color: var(--tv-gold) !important;
-            background: transparent !important;
-        }
-        
-        /* Booking section overrides to fix bleeding & background text */
-        .hurryup-booking-section {
-            background-image: url("https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1920&q=80") !important;
-            min-height: 520px !important;
-            max-height: none !important;
-            height: auto !important;
-            padding: 80px 0 !important;
-        }
-        
-        .hurryup-block {
-            background-color: rgba(201, 169, 110, 0.92) !important; /* Rich gold overlay */
-            border-radius: 8px 0 0 8px;
-            box-shadow: -5px 5px 25px rgba(0,0,0,0.15);
-        }
-        
-        .booking-form-block {
-            background-color: rgba(16, 16, 29, 0.95) !important; /* Deep navy overlay */
-            border-radius: 0 8px 8px 0;
-            box-shadow: 5px 5px 25px rgba(0,0,0,0.15);
-            border-left: 1px solid rgba(201, 169, 110, 0.2);
-        }
-        
-        .booking-form-block h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--tv-gold) !important;
-        }
-        
-        .booking-form-block .form-control {
-            background: rgba(255, 255, 255, 0.08) !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-            color: #ffffff !important;
-            border-radius: 4px !important;
-            text-transform: none !important;
-        }
-        
-        .booking-form-block .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.55) !important;
-        }
-        
-        .booking-form-block .form-control:focus {
-            border-color: var(--tv-gold) !important;
-            background: rgba(255, 255, 255, 0.12) !important;
-        }
-        
-        .booking-form-block .btn {
-            border-radius: 4px !important;
-            background-color: var(--tv-gold) !important;
-            color: var(--tv-navy) !important;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700 !important;
-            transition: all 0.3s ease !important;
-        }
-        .booking-form-block .btn:hover {
-            background-color: var(--tv-gold-hover) !important;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4);
-        }
-        
-        footer.footer-main { background: var(--tv-navy) !important; }
+            :root {
+                --tv-gold: #c9a96e;
+                --tv-gold-hover: #dfbe84;
+                --tv-navy: #10101d;
+                --tv-cream: #f5f0e8;
+            }
+
+            .top-header {
+                background: var(--tv-navy) !important;
+                border-bottom: 1px solid rgba(201, 169, 110, 0.15) !important;
+                padding: 10px 0 !important;
+            }
+
+                .top-header .social ul li a i {
+                    color: #fff !important;
+                    transition: all 0.3s ease;
+                }
+
+                .top-header .social ul li a:hover i {
+                    color: var(--tv-gold) !important;
+                    transform: scale(1.1);
+                }
+
+                .top-header .register a {
+                    color: rgba(255, 255, 255, 0.8) !important;
+                    font-weight: 500;
+                    text-decoration: none;
+                    letter-spacing: 0.5px;
+                    transition: all 0.3s ease;
+                }
+
+                    .top-header .register a:hover {
+                        color: var(--tv-gold) !important;
+                    }
+
+                .top-header .logo-block h3 {
+                    margin: 0 !important;
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 32px !important;
+                    letter-spacing: 5px !important;
+                    font-weight: 700 !important;
+                    text-transform: uppercase;
+                }
+
+            .footer-about .logo-block h3 {
+                margin: 0 0 15px 0 !important;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 22px !important;
+                letter-spacing: 4px !important;
+                font-weight: 700 !important;
+                text-transform: uppercase;
+                display: block !important;
+            }
+
+            .logo-block h3 .logo-the {
+                font-weight: 300 !important;
+                color: #ffffff !important;
+                transition: all 0.3s ease;
+            }
+
+            .logo-block h3 .logo-venue {
+                font-weight: 700 !important;
+                color: var(--tv-gold) !important;
+                transition: all 0.3s ease;
+            }
+
+            .logo-block a:hover h3 .logo-venue {
+                color: var(--tv-gold-hover) !important;
+                text-shadow: 0 0 10px rgba(201, 169, 110, 0.2);
+            }
+
+            .menu-block {
+                background: var(--tv-navy) !important;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .navbar.ow-navigation {
+                border: none !important;
+                margin-bottom: 0 !important;
+                background: transparent !important;
+            }
+
+            .navbar-brand span {
+                color: var(--tv-gold) !important;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                letter-spacing: 3px;
+            }
+
+            .menubar > li > a {
+                color: rgba(255, 255, 255, 0.95) !important;
+                font-family: 'Montserrat', sans-serif !important;
+                font-weight: 600 !important;
+                font-size: 13px !important;
+                text-transform: uppercase !important;
+                letter-spacing: 2px !important;
+                transition: all 0.3s ease !important;
+                padding: 20px 22px !important;
+                position: relative;
+            }
+
+                .menubar > li > a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 12px;
+                    left: 50%;
+                    width: 0;
+                    height: 2px;
+                    background: var(--tv-gold);
+                    transition: all 0.3s ease;
+                    transform: translateX(-50%);
+                }
+
+                .menubar > li > a:hover {
+                    color: var(--tv-gold) !important;
+                }
+
+                    .menubar > li > a:hover::after,
+                    .menubar > li.active > a::after {
+                        width: 30px;
+                    }
+
+            .menubar > li.active > a {
+                color: var(--tv-gold) !important;
+                background: transparent !important;
+            }
+
+            .hurryup-booking-section {
+                background-image: url("https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1920&q=80") !important;
+                min-height: 520px !important;
+                max-height: none !important;
+                height: auto !important;
+                padding: 80px 0 !important;
+            }
+
+            .hurryup-block {
+                background-color: rgba(201, 169, 110, 0.92) !important;
+                border-radius: 8px 0 0 8px;
+                box-shadow: -5px 5px 25px rgba(0,0,0,0.15);
+            }
+
+            .booking-form-block {
+                background-color: rgba(16, 16, 29, 0.95) !important;
+                border-radius: 0 8px 8px 0;
+                box-shadow: 5px 5px 25px rgba(0,0,0,0.15);
+                border-left: 1px solid rgba(201, 169, 110, 0.2);
+            }
+
+                .booking-form-block h3 {
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 700;
+                    letter-spacing: 1px;
+                    color: var(--tv-gold) !important;
+                }
+
+                .booking-form-block .form-control {
+                    background: rgba(255, 255, 255, 0.08) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                    color: #ffffff !important;
+                    border-radius: 4px !important;
+                    text-transform: none !important;
+                }
+
+                    .booking-form-block .form-control::placeholder {
+                        color: rgba(255, 255, 255, 0.55) !important;
+                    }
+
+                    .booking-form-block .form-control:focus {
+                        border-color: var(--tv-gold) !important;
+                        background: rgba(255, 255, 255, 0.12) !important;
+                    }
+
+                .booking-form-block .btn {
+                    border-radius: 4px !important;
+                    background-color: var(--tv-gold) !important;
+                    color: var(--tv-navy) !important;
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 700 !important;
+                    transition: all 0.3s ease !important;
+                }
+
+                    .booking-form-block .btn:hover {
+                        background-color: var(--tv-gold-hover) !important;
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4);
+                    }
+
+            footer.footer-main {
+                background: var(--tv-navy) !important;
+            }
     </style>
 
     @await RenderSectionAsync("Styles", required: false)
@@ -228,25 +221,22 @@
 
 <body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
 
-    <!-- Page Loader -->
     <div id="site-loader" class="load-complete">
         <div class="loader">
             <div class="loader-inner ball-clip-rotate"><div></div></div>
         </div>
     </div>
 
-    <!-- ===================== HEADER ===================== -->
     <header class="header-main container-fluid no-padding">
 
-        <!-- Top strip: social + logo -->
         <div class="top-header container-fluid no-padding">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-6 social">
                         <ul>
-                            <li><a title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a title="Twitter"  href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a title="Instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a title="Facebook" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a title="X" href="https://x.com/"><i class="fa fa-twitter"></i></a></li>
+                            <li><a title="Instagram" href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-6 register">
@@ -261,7 +251,6 @@
             </div>
         </div>
 
-        <!-- Navigation -->
         <div class="menu-block container-fluid no-padding">
             <div class="container">
                 <div class="col-md-12 col-sm-12">
@@ -285,13 +274,13 @@
                                     <a asp-controller="Home" asp-action="Index" title="Home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="#venues-section" title="Our Venues">Our Venues</a>
+                                    <a href="@Url.Action("Index", "Home")#venues-section" title="Our Venues">Our Venues</a>
                                 </li>
                                 <li>
-                                    <a href="#events-section" title="Events">Events</a>
+                                    <a href="@Url.Action("Index", "Home")#events-section" title="Events">Events</a>
                                 </li>
                                 <li>
-                                    <a href="#contact-section" title="Contact">Contact</a>
+                                    <a href="@Url.Action("Index", "Home")#contact-section" title="Contact">Contact</a>
                                 </li>
                             </ul>
                         </div>
@@ -301,14 +290,10 @@
         </div>
 
     </header>
-    <!-- ===================== /HEADER ===================== -->
 
-    <!-- ===================== PAGE CONTENT ===================== -->
     @RenderBody()
-    <!-- ===================== /PAGE CONTENT ===================== -->
 
-    <!-- ===================== FOOTER ===================== -->
-    <footer class="footer-main container-fluid no-padding" id="contact-section">
+    <footer class="footer-main container-fluid no-padding">
         <div class="container">
 
             <div class="footer-about">
@@ -325,11 +310,11 @@
                 <aside class="col-md-3 col-sm-6 col-xs-6 widget widget_customer_services">
                     <h3 class="block-title">Our Spaces</h3>
                     <ul>
-                        <li><a href="#" title="Ballrooms">Ballrooms</a></li>
-                        <li><a href="#" title="Rooftop Terraces">Rooftop Terraces</a></li>
-                        <li><a href="#" title="Studio Lofts">Studio Lofts</a></li>
-                        <li><a href="#" title="Conference Rooms">Conference Rooms</a></li>
-                        <li><a href="#" title="Garden Venues">Garden Venues</a></li>
+                        <li><a href="@Url.Action("Index", "Home")#venues-section" title="Ballrooms">Ballrooms</a></li>
+                        <li><a href="@Url.Action("Index", "Home")#venues-section" title="Rooftop Terraces">Rooftop Terraces</a></li>
+                        <li><a href="@Url.Action("Index", "Home")#venues-section" title="Studio Lofts">Studio Lofts</></li>
+                        <li><a href="@Url.Action("Index", "Home")#venues-section" title="Conference Rooms">Conference Rooms</a></li>
+                        <li><a href="@Url.Action("Index", "Home")#venues-section" title="Garden Venues">Garden Venues</a></li>
                     </ul>
                 </aside>
 
@@ -337,9 +322,9 @@
                     <h3 class="block-title">Quick Links</h3>
                     <ul>
                         <li><a asp-controller="Home" asp-action="Index" title="Home">Home</a></li>
-                        <li><a href="#venues-section" title="Venues">Venues</a></li>
-                        <li><a href="#events-section" title="Events">Events</a></li>
-                        <li><a href="#contact-section" title="Contact">Contact</a></li>
+                        <li><a href="@Url.Action("Index", "Home")#venues-section" title="Venues">Venues</a></li>
+                        <li><a href="@Url.Action("Index", "Home")#events-section" title="Events">Events</a></li>
+                        <li><a href="@Url.Action("Index", "Home")#contact-section" title="Contact">Contact</a></li>
                     </ul>
                 </aside>
 
@@ -360,19 +345,17 @@
                 </aside>
 
                 <aside class="col-md-4 col-sm-6 col-xs-6 widget widget_newsletter">
-                    <h3 class="block-title">Stay Updated</h3>
-                    <p>Subscribe to hear about upcoming events and new venue openings.</p>
-                    <div class="input-group">
-                        <input type="email" placeholder="Your email address" class="form-control">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn">Go</button>
-                        </span>
-                    </div>
+                    <h3 class="block-title">Stay Updated</h3><p>Subscribe to hear about upcoming events and new venue openings.</p><div class="input-group">
+                    <input type="email" placeholder="Your email address" class="form-control">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn" onclick="alert('You have subscribed to the newsletter!')">Go</button>
+                    </span>
+                </div>
                     <ul style="margin-top:15px;">
-                        <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://www.facebook.com/" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://x.com/" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://linkedin.com/" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </aside>
             </div>
@@ -387,18 +370,16 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li><a asp-controller="Home" asp-action="Index" title="Home">Home</a></li>
-                            <li><a href="#venues-section">Venues</a></li>
-                            <li><a href="#events-section">Events</a></li>
-                            <li><a href="#contact-section">Contact</a></li>
+                            <li><a href="@Url.Action("Index", "Home")#venues-section">Venues</a></li>
+                            <li><a href="@Url.Action("Index", "Home")#events-section">Events</a></li>
+                            <li><a href="@Url.Action("Index", "Home")#contact-section">Contact</a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
         </div>
     </footer>
-    <!-- ===================== /FOOTER ===================== -->
 
-    <!-- JS: jQuery first, then Bootstrap, then Mitri plugins -->
     <script src="~/lib-public/js/jquery.min.js"></script>
     <script src="~/lib-public/libraries/lib.js"></script>
     <script src="~/lib-public/libraries/jquery.countdown.min.js"></script>

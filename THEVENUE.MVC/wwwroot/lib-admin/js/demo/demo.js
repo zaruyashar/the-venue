@@ -1,6 +1,6 @@
 'use strict';
 /*
- * http://themerex.com/
+ * https://themerex.com/
  * Copyright (c) 2015 ThemeREX;
 */
 

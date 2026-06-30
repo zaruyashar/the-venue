@@ -422,7 +422,7 @@ var hljs = new function () {
         }
         var y;
         if (b.useBR) {
-            y = document.createElementNS("http://www.w3.org/1999/xhtml", "div");
+            y = document.createElementNS("https://www.w3.org/1999/xhtml", "div");
             y.innerHTML = A.innerHTML.replace(/\n/g, "").replace(/<br[ \/]*>/g, "\n")
         } else {
             y = A
@@ -431,7 +431,7 @@ var hljs = new function () {
         var v = B ? c(B, z, true) : e(z);
         var x = u(y);
         if (x.length) {
-            var w = document.createElementNS("http://www.w3.org/1999/xhtml", "div");
+            var w = document.createElementNS("https://www.w3.org/1999/xhtml", "div");
             w.innerHTML = v.value;
             v.value = q(x, u(w), z)
         }

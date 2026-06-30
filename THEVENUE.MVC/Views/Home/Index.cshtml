@@ -5,7 +5,6 @@
     var events = ViewBag.Events as IEnumerable<THEVENUE.MVC.Models.Event> ?? new List<THEVENUE.MVC.Models.Event>();
 }
 
-<!-- ===================== HERO SLIDER ===================== -->
 <div id="slider-section" class="slider-section container-fluid no-padding">
     <div id="hero-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
@@ -22,7 +21,7 @@
                                     <p>A majestic ballroom with crystal chandeliers, marble floors, and state-of-the-art facilities in Beşiktaş.</p>
                                 </div>
                                 <div class="col-md-12 no-padding" style="margin-top:20px;">
-                                    <a href="#venues-section" title="Browse Venues"
+                                    <a href="@Url.Action("Index", "Home")#venues-section" title="Browse Venues"
                                        style="background:var(--tv-gold);color:#10101d;padding:12px 28px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:4px;display:inline-block;transition:all 0.3s ease;">
                                         Browse Venues
                                     </a>
@@ -45,7 +44,7 @@
                                     <p>An open-air rooftop terrace featuring breathtaking panoramic Bosphorus views in Üsküdar.</p>
                                 </div>
                                 <div class="col-md-12 no-padding" style="margin-top:20px;">
-                                    <a href="#events-section" title="Upcoming Events"
+                                    <a href="@Url.Action("Index", "Home")#events-section" title="Upcoming Events"
                                        style="background:var(--tv-gold);color:#10101d;padding:12px 28px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:4px;display:inline-block;transition:all 0.3s ease;">
                                         Upcoming Events
                                     </a>
@@ -68,7 +67,7 @@
                                     <p>A modern, minimalist industrial loft space perfect for creative launches and private events in Karaköy.</p>
                                 </div>
                                 <div class="col-md-12 no-padding" style="margin-top:20px;">
-                                    <a href="#contact-section" title="Contact Us"
+                                    <a href="@Url.Action("Index", "Home")#contact-section" title="Contact Us"
                                        style="background:var(--tv-gold);color:#10101d;padding:12px 28px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:4px;display:inline-block;transition:all 0.3s ease;">
                                         Get In Touch
                                     </a>
@@ -91,7 +90,6 @@
     </div>
 </div>
 
-<!-- ===================== WHY THEVENUE ===================== -->
 <div class="container-fluid no-padding howwecan-section">
     <div class="section-padding"></div>
     <div class="container">
@@ -135,17 +133,17 @@
                         <div role="tabpanel" class="tab-pane fade in active" id="why_1">
                             <h3>Prime Locations</h3>
                             <p>Our venues are strategically located across İstanbul's most prestigious districts — Beşiktaş, Üsküdar, and Karaköy — with easy transport access and stunning surroundings.</p>
-                            <a href="#venues-section" title="See Venues">See our venues</a>
+                            <a href="@Url.Action("Index", "Home")#venues-section" title="See Venues">See our venues</a>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="why_2">
                             <h3>Expert Event Support</h3>
                             <p>Our dedicated team works with you from the first inquiry through to the final guest's departure — coordinating catering, AV, décor, and logistics so you don't have to.</p>
-                            <a href="#contact-section" title="Contact Us">Talk to our team</a>
+                            <a href="@Url.Action("Index", "Home")#contact-section" title="Contact Us">Talk to our team</a>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="why_3">
                             <h3>Flexible Packages</h3>
                             <p>Whether you need a space for two hours or an all-weekend takeover, our pricing is transparent and our packages are fully customisable to your needs and budget.</p>
-                            <a href="#contact-section" title="Get a Quote">Get a quote</a>
+                            <a href="@Url.Action("Index", "Home")#contact-section" title="Get a Quote">Get a quote</a>
                         </div>
                     </div>
                 </div>
@@ -155,7 +153,6 @@
     <div class="section-padding"></div>
 </div>
 
-<!-- ===================== VENUE CATALOGUE ===================== -->
 <div id="venues-section" class="container-fluid no-padding" style="background:var(--tv-cream);">
     <div class="section-padding"></div>
     <div class="container">
@@ -221,7 +218,6 @@
     <div class="section-padding"></div>
 </div>
 
-<!-- ===================== UPCOMING EVENTS ===================== -->
 @if (events.Any())
 {
     <div id="events-section" class="container-fluid no-padding schedule-section">
@@ -269,8 +265,7 @@
     </div>
 }
 
-<!-- ===================== HURRY UP / CTA SECTION ===================== -->
-<div class="container-fluid hurryup-booking-section no-padding">
+<div id="contact-section" class="container-fluid hurryup-booking-section no-padding">
     <div class="container">
         <div class="col-md-6 col-sm-6 no-padding">
             <div class="hurryup-block">
@@ -278,18 +273,18 @@
                     <h3>Reserve Your Space Today</h3>
                     <p>Our most popular venues fill up months in advance. Don't miss your date — get in touch with our reservations team and we'll get back to you within 24 hours.</p>
                     <div style="margin-top:25px;">
-                        <div style="display:flex;gap:30px;">
+                        <div style="display:flex;gap:30px; padding-left: 5rem;">
                             <div style="text-align:center;">
-                                <div style="font-size:36px;font-weight:700;color:var(--tv-gold);">@venues.Count()</div>
-                                <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#ccc;">Venues</div>
+                                <div style="font-size:36px;font-weight:700;color:papayawhip;">@venues.Count()</div>
+                                <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:floralwhite;">Venues</div>
                             </div>
                             <div style="text-align:center;">
-                                <div style="font-size:36px;font-weight:700;color:var(--tv-gold);">@events.Count()</div>
-                                <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#ccc;">Upcoming Events</div>
+                                <div style="font-size:36px;font-weight:700;color:papayawhip;">@events.Count()</div>
+                                <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:floralwhite;">Upcoming Events</div>
                             </div>
                             <div style="text-align:center;">
-                                <div style="font-size:36px;font-weight:700;color:var(--tv-gold);">100%</div>
-                                <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#ccc;">Satisfaction</div>
+                                <div style="font-size:36px;font-weight:700;color:papayawhip;">100%</div>
+                                <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:floralwhite;">Satisfaction</div>
                             </div>
                         </div>
                     </div>

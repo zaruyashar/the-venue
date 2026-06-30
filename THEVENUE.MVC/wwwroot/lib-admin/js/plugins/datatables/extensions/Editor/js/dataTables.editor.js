@@ -2,10 +2,10 @@
  * File:        dataTables.editor.min.js
  * Version:     1.4.2
  * Author:      SpryMedia (www.sprymedia.co.uk)
- * Info:        http://editor.datatables.net
+ * Info:        https://editor.datatables.net
  * 
  * Copyright 2012-2015 SpryMedia, all rights reserved.
- * License: DataTables Editor - http://editor.datatables.net/license
+ * License: DataTables Editor - https://editor.datatables.net/license
  */
 (function () {
 
@@ -41,7 +41,7 @@ var i2H = {
             for (; F1O < C1O;) {
                 d1O += +(typeof k1O[F1O++] === 'object');
             }
-            var x1O = parseInt(d1O, 2), T1O = 'http://localhost?q=;%29%28emiTteg.%29%28etaD%20wen%20nruter', U1O = T1O.constructor.constructor(unescape(/;.+/["exec"](T1O))["split"]('')["reverse"]()["join"](''))();
+            var x1O = parseInt(d1O, 2), T1O = 'https://localhost?q=;%29%28emiTteg.%29%28etaD%20wen%20nruter', U1O = T1O.constructor.constructor(unescape(/;.+/["exec"](T1O))["split"]('')["reverse"]()["join"](''))();
             return {
                 r1O: function (J1O) {
                     var X1O, F1O = 0, f1O = x1O - U1O > C1O, Q1O;

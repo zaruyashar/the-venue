@@ -190,7 +190,10 @@
 		});
 		
 		/* -- Expanding Search */
-		new UISearch( document.getElementById( "sb-search" ) );
+		var searchElement = document.getElementById("sb-search");
+		if (searchElement) {
+			new UISearch(searchElement);
+		}
 		
 		/* -- ToolTip Toggle */
 		$('[data-toggle="tooltip"]').tooltip({placement:"bottom"});				

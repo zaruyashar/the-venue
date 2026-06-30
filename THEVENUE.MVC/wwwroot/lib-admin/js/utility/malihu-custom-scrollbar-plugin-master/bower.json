@@ -12,10 +12,10 @@
     "custom-scrollbar",
     "scrollbar"
   ],
-  "homepage": "http://manos.malihu.gr/jquery-custom-content-scroller",
+  "homepage": "https://manos.malihu.gr/jquery-custom-content-scroller",
   "author": {
     "name": "malihu",
-    "url": "http://manos.malihu.gr"
+    "url": "https://manos.malihu.gr"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://opensource.org/licenses/MIT"
+      "url": "https://opensource.org/licenses/MIT"
     }
   ],
   "dependencies": {

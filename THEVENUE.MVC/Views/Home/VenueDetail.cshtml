@@ -5,7 +5,6 @@
     var events = ViewBag.Events as IEnumerable<THEVENUE.MVC.Models.Event> ?? new List<THEVENUE.MVC.Models.Event>();
 }
 
-<!-- Page Hero -->
 <div class="container-fluid no-padding" style="position:relative;min-height:300px;background:var(--tv-navy);display:flex;align-items:center;">
     @if (!string.IsNullOrEmpty(Model.ImageUrl))
     {
@@ -24,13 +23,11 @@
     </div>
 </div>
 
-<!-- Venue Details -->
 <div class="container-fluid no-padding" style="background:var(--tv-cream);">
     <div class="section-padding"></div>
     <div class="container">
         <div class="row">
 
-            <!-- Left: info -->
             <div class="col-md-8 col-sm-12">
                 <div class="panel panel-default" style="border-top:3px solid var(--tv-gold);">
                     <div class="panel-body">
@@ -72,7 +69,6 @@
                 }
             </div>
 
-            <!-- Right: specs sidebar -->
             <div class="col-md-4 col-sm-12">
                 <div class="panel panel-default" style="border-top:3px solid var(--tv-gold);">
                     <div class="panel-heading" style="background:var(--tv-navy);">
@@ -109,12 +105,11 @@
                     </div>
                 </div>
 
-                <!-- Enquiry CTA -->
                 <div class="panel panel-default" style="margin-top:15px;background:var(--tv-navy);border:none;">
                     <div class="panel-body" style="text-align:center;padding:30px 20px;">
                         <h4 style="color:var(--tv-gold);margin-bottom:10px;">Interested in this venue?</h4>
                         <p style="color:#ccc;font-size:13px;margin-bottom:20px;">Contact our team to check availability and get a personalised quote.</p>
-                        <a href="#contact-section"
+                        <a href="@Url.Action("Index", "Home")#contact-section"
                            style="display:block;background:var(--tv-gold);color:var(--tv-navy);padding:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:12px;">
                             Make an Enquiry
                         </a>

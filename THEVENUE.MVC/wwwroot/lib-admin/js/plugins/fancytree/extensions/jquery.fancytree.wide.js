@@ -4,7 +4,7 @@
  * Support for 100% wide selection bars.
  * (Extension module for jquery.fancytree.js: https://github.com/mar10/fancytree/)
  *
- * Copyright (c) 2014, Martin Wendt (http://wwWendt.de)
+ * Copyright (c) 2014, Martin Wendt (https://wwWendt.de)
  *
  * Released under the MIT license
  * https://github.com/mar10/fancytree/wiki/LicenseInfo
@@ -31,7 +31,7 @@
 
     /* Calculate inner width without scrollbar */
     function realInnerWidth($el) {
-        // http://blog.jquery.com/2012/08/16/jquery-1-8-box-sizing-width-csswidth-and-outerwidth/
+        // https://blog.jquery.com/2012/08/16/jquery-1-8-box-sizing-width-csswidth-and-outerwidth/
 //	inst.contWidth = parseFloat(this.$container.css("width"), 10);
         // 'Client width without scrollbar' - 'padding'
         return $el[0].clientWidth - ($el.innerWidth() - parseFloat($el.css("width"), 10));
@@ -51,7 +51,7 @@
         var inst = this.ext.wide,
             prevCw = inst.contWidth,
             prevLo = inst.lineOfs;
-        // http://blog.jquery.com/2012/08/16/jquery-1-8-box-sizing-width-csswidth-and-outerwidth/
+        // https://blog.jquery.com/2012/08/16/jquery-1-8-box-sizing-width-csswidth-and-outerwidth/
 //	inst.contWidth = parseFloat(this.$container.css("width"), 10);
         inst.contWidth = realInnerWidth(this.$container);
         // Each title is precceeded by 2 or 3 icons (16px + 3 margin)
@@ -81,7 +81,7 @@
         treeCreate: function (ctx) {
             this.$container.addClass("fancytree-ext-wide");
             this._super(ctx);
-            // http://blog.jquery.com/2012/08/16/jquery-1-8-box-sizing-width-csswidth-and-outerwidth/
+            // https://blog.jquery.com/2012/08/16/jquery-1-8-box-sizing-width-csswidth-and-outerwidth/
 //		this._local.contWidth = parseFloat(ctx.tree.$container.css("width"), 10);
             this._local.contWidth = realInnerWidth(ctx.tree.$container);
             // Every nested UL is indented by 16px

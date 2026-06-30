@@ -116,7 +116,7 @@
                 },
                 website: {
                     required: 'Enter your website URL',
-                    url: 'URL should start with - http://www'
+                    url: 'URL should start with - https://www'
                 },
                 language: {
                     required: 'Select language'

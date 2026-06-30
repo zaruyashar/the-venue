@@ -1,4 +1,4 @@
-# 🥂 THEVENUE Management System
+# 🥂 THEVENUE Events Management System
 
 ## 📖 Description
 
@@ -38,8 +38,9 @@ The backend management system provides total control over venues, events, reserv
 **8. Reservations Management:** Handle bookings with quick-action status toggles (Pending, Confirmed, Cancelled) and a dedicated CSV export feature.
 <img width="3015" height="1917" alt="8" src="https://github.com/user-attachments/assets/acd7b7a9-0aa2-41a3-86f7-18852a39852b" />
 
-**9. Event Management:** Create, filter, and manage upcoming events with attendee counts and visibility controls.
-<img width="3039" height="1917" alt="9" src="https://github.com/user-attachments/assets/4889fb10-60bf-46a4-8e2e-2a664aadaab4" />
+**9. Event Management:** Create, filter, and manage upcoming events with attendee counts and visibility controls. Responsive search functionality on admin CRUD tables.
+<img width="3039" height="1917" alt="9" src="https://github.com/user-attachments/assets/7538dcc4-9df2-4b84-bf3a-4b947b5cee80" />
+
 
 **10. Venue Editing:** Update venue details including capacity, pricing, location, descriptions, and active status for the public site.
 <img width="3035" height="1905" alt="10" src="https://github.com/user-attachments/assets/a2bfe20d-23ae-4b5f-89fd-6be217e855b3" />
